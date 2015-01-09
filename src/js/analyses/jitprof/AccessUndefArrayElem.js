@@ -85,7 +85,6 @@
                     if (HOP(uninitArrDB, prop)) {
                         if(uninitArrDB[prop].count > ACCESS_THRESHOLD) {
                             jitUninitArr.push({'iid': prop, 'count': uninitArrDB[prop].count});
-                            console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
                             num++;
                         }
                     }
