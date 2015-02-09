@@ -15,6 +15,7 @@
  */
 
 // Author: Liang Gong
+// Ported to Jalangi2 by Koushik Sen
 
 /**
  * Check Rule: Try not to put non-numeric values into numeric arrays
