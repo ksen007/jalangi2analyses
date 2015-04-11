@@ -64,10 +64,19 @@
             this.printResult();
         };
 
+        var resultStr = "";
+        function printString(str) {
+            resultStr += "<p>"+str+"</p>\n";
+        }
+
+        function printToDOM() {
+            document.getElementById("jalangi_results_window").innerHTML = document.getElementById("jalangi_results_window").innerHTML + resultStr;
+        }
+
         this.printResult = function () {
             try {
-                console.log("---------------------------");
-                console.log('Report of making non-contiguous array:')
+                printString("---------------------------");
+                printString('Report of making non-contiguous array:')
                 var incontArrDBArr = [];
                 var incontArrDB = db.getByIndexArr(['JIT-checker', 'non-cont-array']);
                 var num = 0;
@@ -83,15 +92,16 @@
                     return b.count - a.count;
                 });
                 for (var i = 0; i < incontArrDBArr.length && i < warning_limit; i++) {
-                    console.log(' * [location: ' + iidToLocation(incontArrDBArr[i].iid) + '] <- No. usages: ' + incontArrDBArr[i].count);
+                    printString(' * [location: ' + iidToLocation(incontArrDBArr[i].iid) + '] <- No. usages: ' + incontArrDBArr[i].count);
                 }
-                console.log('...');
-                console.log('Number of putting non-contiguous array statements: ' + num);
-                console.log('[****]NonContArray: ' + num);
-                console.log('Why: In order to handle large and sparse arrays, there are two types of array storage internally:\n' +
+                printString('...');
+                printString('Number of putting non-contiguous array statements: ' + num);
+                printString('[****]NonContArray: ' + num);
+                printString('Why: In order to handle large and sparse arrays, there are two types of array storage internally:\n' +
                 '\t * Fast Elements: linear storage for compact key sets\n' +
                 '\t * Dictionary Elements: hash table storage otherwise\n' +
                 'It\'s best not to cause the array storage to flip from one type to another.');
+                printToDOM()
 
             } catch (e) {
                 console.log("error!!");

@@ -313,13 +313,23 @@
             return rank + secondMaxCount;
         }
 
+        var resultStr = "";
+        function printString(str) {
+            resultStr += "<p>"+str+"</p>\n";
+        }
+
+        function printToDOM() {
+            document.getElementById("jalangi_results_window").innerHTML = document.getElementById("jalangi_results_window").innerHTML + resultStr;
+        }
+
+
         this.endExecution = function() {
-            console.log('\n\n');
-            console.log("---------------------------");
-            console.log("Created " + count + " hidden classes.");
-            console.log('f_count: ' + f_count);
+            printString('\n\n');
+            printString("---------------------------");
+            printString("Created " + count + " hidden classes.");
+            printString('f_count: ' + f_count);
             
-            console.log();
+            printString();
             var tmp = [];
             for (var iid in info) {
                 if (HOP(info, iid)) {
@@ -342,10 +352,10 @@
                 if (x.count > MIN_CACHE_HITS) {
                     var meta = x.meta;
                     num++;
-                    console.log("property access at " + iidToLocation(x.iid) + " has missed cache " + x.count + " time(s).");
+                    printString("property access at " + iidToLocation(x.iid) + " has missed cache " + x.count + " time(s).");
                     for (var loc in meta.objectLocs) {
                         if (HOP(meta.objectLocs, loc)) {
-                            console.log("  accessed property \"" + meta.lastKey.substring(meta.lastKey.indexOf(":") + 1) + "\" of object created at " + iidToLocation(loc) + " " + meta.objectLocs[loc] + " time(s) ");
+                            printString("  accessed property \"" + meta.lastKey.substring(meta.lastKey.indexOf(":") + 1) + "\" of object created at " + iidToLocation(loc) + " " + meta.objectLocs[loc] + " time(s) ");
                         }
                     }
                     var mergeDB = {};
@@ -363,12 +373,13 @@
                     }
                     for (var layout in mergeDB) {
                         if (HOP(mergeDB, layout)) {
-                            console.log(mergeDB[layout]);
+                            printString(mergeDB[layout]);
                         }
                     }
                 }
             }
-            console.log('[****]HiddenClass: ' + num);
+            printString('[****]HiddenClass: ' + num);
+            printToDOM();
         };
 
     }

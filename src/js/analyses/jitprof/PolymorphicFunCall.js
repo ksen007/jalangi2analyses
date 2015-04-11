@@ -55,6 +55,15 @@
         var MISS_THRESHOLD = 999;
 
         // ---- Print functions start ----
+        var resultStr = "";
+        function printString(str) {
+            resultStr += "<p>"+str+"</p>\n";
+        }
+
+        function printToDOM() {
+            document.getElementById("jalangi_results_window").innerHTML = document.getElementById("jalangi_results_window").innerHTML + resultStr;
+        }
+
 
         function printPolyBinary(indexArr) {
             var array = [];
@@ -74,14 +83,14 @@
             for (var i = 0; i < array.length; i++) {
                 var iid = array[i].iid;
                 warning_num++;
-                console.log('* Polymorphic binary operation at ' + iidToLocation(iid));
-                console.log('\tHit: ' + array[i].hit + '\tMiss: ' + array[i].miss);
+                printString('* Polymorphic binary operation at ' + iidToLocation(iid));
+                printString('\tHit: ' + array[i].hit + '\tMiss: ' + array[i].miss);
                 var len = array[i].types.length;
                 for (var index =0; index < len; index++) {
                     if(HOP(array[i].types, index)) {
                         var left_type_name = getTypeName(array[i].types[index].left_type);
                         var right_type_name = getTypeName(array[i].types[index].right_type);
-                        console.log('\tCount: ' + array[i].types[index].count +
+                        printString('\tCount: ' + array[i].types[index].count +
                         '\ttypes: ' + left_type_name + ' ' + array[i].operator + ' ' + right_type_name);
                     }
                 }
@@ -107,13 +116,13 @@
             for (var i = 0; i < array.length; i++) {
                 var iid = array[i].iid;
                 warning_num++;
-                console.log('* Polymorphic unary operation at ' + iidToLocation(iid));
-                console.log('\tHit: ' + array[i].hit + '\tMiss: ' + array[i].miss);
+                printString('* Polymorphic unary operation at ' + iidToLocation(iid));
+                printString('\tHit: ' + array[i].hit + '\tMiss: ' + array[i].miss);
                 var len = array[i].types.length;
                 for (var index =0; index < len; index++) {
                     if(HOP(array[i].types, index)) {
                         var left_type_name = getTypeName(array[i].types[index].left_type);
-                        console.log('\tCount: ' + array[i].types[index].count +
+                        printString('\tCount: ' + array[i].types[index].count +
                         '\ttypes:   ' + array[i].operator + ' ' + left_type_name);
                     }
                 }
@@ -122,12 +131,13 @@
 
         this.printResult = function () {
             try {
-                console.log("---------------------------");
-                console.log('Report of Polymorphic Binary Operations:');
+                printString("---------------------------");
+                printString('Report of Polymorphic Binary Operations:');
                 printPolyBinary(['JIT-checker', 'polymorphic-binary']);
-                console.log('Report of Polymorphic Unary Operations:');
+                printString('Report of Polymorphic Unary Operations:');
                 printPolyUnary(['JIT-checker', 'polymorphic-unary']);
-                console.log('[****]PolyFun: ' + warning_num);
+                printString('[****]PolyFun: ' + warning_num);
+                printToDOM();
             } catch (e) {
                 console.log("error!!");
                 console.log(e);
