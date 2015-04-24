@@ -298,21 +298,12 @@
             }
         };
 
-        var resultStr = "";
-        function printString(str) {
-            resultStr += "<p>"+str+"</p>\n";
-        }
-
-        function printToDOM() {
-            document.getElementById("jalangi_results_window").innerHTML = document.getElementById("jalangi_results_window").innerHTML + resultStr;
-        }
-
 
         this.endExecution = function () {
             var failArraySource = [];
             var reportDB = {};
             var readOnlyDB = {};
-            printString('gathering data...');
+            sandbox.log('gathering data...');
 
             iid_loop:
                 for(var iid in arraydb) {
@@ -416,17 +407,17 @@
             });
 
             // print final results
-            printString('-------------Fix Array Refactor Report-------------');
-            printString('Array created at the following locations may be special-typed:');
+            sandbox.log('-------------Fix Array Refactor Report-------------');
+            sandbox.log('Array created at the following locations may be special-typed:');
             var num = 0;
             for (var i = 0; i < iidArray.length; i++) {
                 var iid = iidArray[i].iid; num++;
                 // print location
-                printString('location: ' + iidToLocation(iid));
-                printString('\t[Oper-Count]:\t' + reportDB[iid].count);
+                sandbox.log('location: ' + iidToLocation(iid));
+                sandbox.log('\t[Oper-Count]:\t' + reportDB[iid].count);
 
                 if (readOnlyDB[iid] === true) {
-                    printString('\t[READONLY]');
+                    sandbox.log('\t[READONLY]');
                 } else {
                     // print max indices
                     var maxIndicesBuffer = [];
@@ -435,7 +426,7 @@
                             maxIndicesBuffer.push(index);
                         }
                     }
-                    printString('\t[Max-Indices]:\t' + JSON.stringify(maxIndicesBuffer));
+                    sandbox.log('\t[Max-Indices]:\t' + JSON.stringify(maxIndicesBuffer));
 
                     // print typed arrays that can be cast to
                     var arrayFitBuffer = [];
@@ -446,7 +437,7 @@
                             }
                         }
                     }
-                    printString('\t[Refactor-Opts]: ' + JSON.stringify(arrayFitBuffer));
+                    sandbox.log('\t[Refactor-Opts]: ' + JSON.stringify(arrayFitBuffer));
                 }
 
                 if (HOP(reportDB[iid], 'functions_use')) {
@@ -457,7 +448,7 @@
                         }
                     }
                     if (funUseBuffer.length > 0) {
-                        printString('\t[Func-Used]: ' + JSON.stringify(funUseBuffer));
+                        sandbox.log('\t[Func-Used]: ' + JSON.stringify(funUseBuffer));
                     }
                 }
 
@@ -469,7 +460,7 @@
                         }
                     }
                     if (propSetBuffer.length > 0) {
-                        printString('\t[Prop-Set]: ' + JSON.stringify(propSetBuffer));
+                        sandbox.log('\t[Prop-Set]: ' + JSON.stringify(propSetBuffer));
                     }
                 }
 
@@ -481,27 +472,27 @@
                         }
                     }
                     if (propGetBuffer.length > 0) {
-                        printString('\t[Prop-Get]: ' + JSON.stringify(propGetBuffer));
+                        sandbox.log('\t[Prop-Get]: ' + JSON.stringify(propGetBuffer));
                     }
                 }
 
                 if (HOP(reportDB[iid], 'typeof_use')) {
                     if (reportDB[iid].typeof_use === true) {
-                        printString('\t[Typeof]: \'typeof\' applied');
+                        sandbox.log('\t[Typeof]: \'typeof\' applied');
                     }
                 }
             }
-            printString('[****]typedArray: ' + num);
+            sandbox.log('[****]typedArray: ' + num);
 
-            printString('---------------------------------------------------');
+            sandbox.log('---------------------------------------------------');
             // print array constructing locations that could not be typed
-            printString('Following arrays can not be typed:');
+            sandbox.log('Following arrays can not be typed:');
             for(var iid in failArraySource){
                 if(HOP(failArraySource, iid)){
-                    printString('[x]\t' + iidToLocation(iid) + '\t' + failArraySource[iid]);
+                    sandbox.log('[x]\t' + iidToLocation(iid) + '\t' + failArraySource[iid]);
                 }
             }
-            printToDOM();
+
         }
     }
 

@@ -102,20 +102,11 @@
             this.printResult();
         };
 
-        var resultStr = "";
-        function printString(str) {
-            resultStr += "<p>"+str+"</p>\n";
-        }
-
-        function printToDOM() {
-            document.getElementById("jalangi_results_window").innerHTML = document.getElementById("jalangi_results_window").innerHTML + resultStr;
-        }
-
 
         this.printResult = function () {
             try {
-                printString("---------------------------");
-                printString('Report of switching array type');
+                sandbox.log("---------------------------");
+                sandbox.log('Report of switching array type');
                 var switchArrTypeArr = [];
                 var switchArrTypeDB = db.getByIndexArr(['JIT-checker', 'arr-type-switch']);
                 var num = 0;
@@ -129,12 +120,12 @@
                     return b.count - a.count;
                 });
                 for (var i = 0; i < switchArrTypeArr.length && i < warning_limit; i++) {
-                    printString(' * [location: ' + iidToLocation(switchArrTypeArr[i].iid) + '] <- No. usages: ' + switchArrTypeArr[i].count);
+                    sandbox.log(' * [location: ' + iidToLocation(switchArrTypeArr[i].iid) + '] <- No. usages: ' + switchArrTypeArr[i].count);
                 }
-                printString('...');
-                printString('Number of switching array type spotted: ' + num);
-                printString('[****]SwitchArrayType: ' + num);
-                printToDOM();
+                sandbox.log('...');
+                sandbox.log('Number of switching array type spotted: ' + num);
+                sandbox.log('[****]SwitchArrayType: ' + num);
+
 
             } catch (e) {
                 console.log("error!!");

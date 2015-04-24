@@ -56,20 +56,11 @@
             checkBinaryOpOnUndefined(iid, op, left, right);
         };
 
-        var resultStr = "";
-        function printString(str) {
-            resultStr += "<p>"+str+"</p>\n";
-        }
-
-        function printToDOM() {
-            document.getElementById("jalangi_results_window").innerHTML = document.getElementById("jalangi_results_window").innerHTML + resultStr;
-        }
-
         this.printResult = function () {
             try {
-                printString("---------------------------");
+                sandbox.log("---------------------------");
 
-                printString('Report of binary operation on undefined value:');
+                sandbox.log('Report of binary operation on undefined value:');
                 var binaryUndefinedArr = [];
                 var binaryUndefinedDB = db.getByIndexArr(['JIT-checker', 'binary-undefined-op']);
                 var num = 0;
@@ -85,11 +76,11 @@
                     return b.count - a.count;
                 });
                 for (var i = 0; i < binaryUndefinedArr.length && i < warning_limit; i++) {
-                    printString(' * [location: ' + iidToLocation(binaryUndefinedArr[i].iid) + '] <- No. usages: ' + binaryUndefinedArr[i].count);
+                    sandbox.log(' * [location: ' + iidToLocation(binaryUndefinedArr[i].iid) + '] <- No. usages: ' + binaryUndefinedArr[i].count);
                 }
-                printString('Number of statements that perform binary operation on undefined values: ' + num);
-                printString('[****]BinaryOpUndef: ' + num);
-                printToDOM();
+                sandbox.log('Number of statements that perform binary operation on undefined values: ' + num);
+                sandbox.log('[****]BinaryOpUndef: ' + num);
+
 
             } catch (e) {
                 console.log("error!!");

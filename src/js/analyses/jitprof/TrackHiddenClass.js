@@ -313,23 +313,14 @@
             return rank + secondMaxCount;
         }
 
-        var resultStr = "";
-        function printString(str) {
-            resultStr += "<p>"+str+"</p>\n";
-        }
-
-        function printToDOM() {
-            document.getElementById("jalangi_results_window").innerHTML = document.getElementById("jalangi_results_window").innerHTML + resultStr;
-        }
-
 
         this.endExecution = function() {
-            printString('\n\n');
-            printString("---------------------------");
-            printString("Created " + count + " hidden classes.");
-            printString('f_count: ' + f_count);
+            sandbox.log('\n\n');
+            sandbox.log("---------------------------");
+            sandbox.log("Created " + count + " hidden classes.");
+            sandbox.log('f_count: ' + f_count);
             
-            printString();
+            sandbox.log();
             var tmp = [];
             for (var iid in info) {
                 if (HOP(info, iid)) {
@@ -352,10 +343,10 @@
                 if (x.count > MIN_CACHE_HITS) {
                     var meta = x.meta;
                     num++;
-                    printString("property access at " + iidToLocation(x.iid) + " has missed cache " + x.count + " time(s).");
+                    sandbox.log("property access at " + iidToLocation(x.iid) + " has missed cache " + x.count + " time(s).");
                     for (var loc in meta.objectLocs) {
                         if (HOP(meta.objectLocs, loc)) {
-                            printString("  accessed property \"" + meta.lastKey.substring(meta.lastKey.indexOf(":") + 1) + "\" of object created at " + iidToLocation(loc) + " " + meta.objectLocs[loc] + " time(s) ");
+                            sandbox.log("  accessed property \"" + meta.lastKey.substring(meta.lastKey.indexOf(":") + 1) + "\" of object created at " + iidToLocation(loc) + " " + meta.objectLocs[loc] + " time(s) ");
                         }
                     }
                     var mergeDB = {};
@@ -373,13 +364,13 @@
                     }
                     for (var layout in mergeDB) {
                         if (HOP(mergeDB, layout)) {
-                            printString(mergeDB[layout]);
+                            sandbox.log(mergeDB[layout]);
                         }
                     }
                 }
             }
-            printString('[****]HiddenClass: ' + num);
-            printToDOM();
+            sandbox.log('[****]HiddenClass: ' + num);
+
         };
 
     }

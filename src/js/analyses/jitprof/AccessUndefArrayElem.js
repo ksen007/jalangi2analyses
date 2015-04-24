@@ -73,20 +73,11 @@
             this.printResult();
         };
 
-        var resultStr = "";
-        function printString(str) {
-            resultStr += "<p>"+str+"</p>\n";
-        }
-
-        function printToDOM() {
-            document.getElementById("jalangi_results_window").innerHTML = document.getElementById("jalangi_results_window").innerHTML + resultStr;
-        }
-
         this.printResult = function () {
             try {
-                printString("---------------------------");
+                sandbox.log("---------------------------");
 
-                printString('Report of loading undeclared or deleted array elements:')
+                sandbox.log('Report of loading undeclared or deleted array elements:')
                 var uninitArrDB = db.getByIndexArr(['JIT-checker', 'uninit-array-elem']);
                 var num = 0;
                 var jitUninitArr = [];
@@ -103,12 +94,12 @@
                 });
 
                 for (var i = 0; i < jitUninitArr.length && i < warning_limit; i++) {
-                    printString(' * [location: ' + iidToLocation(jitUninitArr[i].iid) + '] <- No. usages: ' + jitUninitArr[i].count);
+                    sandbox.log(' * [location: ' + iidToLocation(jitUninitArr[i].iid) + '] <- No. usages: ' + jitUninitArr[i].count);
                 }
-                printString('...');
-                printString('Number of loading undeclared or deleted array elements spotted: ' + num);
-                printString('[****]AccessUndefArrayElem: ' + num);
-                printToDOM();
+                sandbox.log('...');
+                sandbox.log('Number of loading undeclared or deleted array elements spotted: ' + num);
+                sandbox.log('[****]AccessUndefArrayElem: ' + num);
+
             } catch (e) {
                 console.log("error!!");
                 console.log(e);
