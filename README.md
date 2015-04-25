@@ -5,7 +5,7 @@
 -->
 
 
-This repository contains dynamic analyses for JavaScript code based on [Jalangi2](https://github.com/Samsung/jalangi2). It mainly consists of analysis from [JITProf](https://github.com/Berkeley-Correctness-Group/JITProf) and [DLint](https://github.com/Berkeley-Correctness-Group/DLint).
+This repository contains dynamic analyses for JavaScript code based on [Jalangi2](https://github.com/Samsung/jalangi2). It mainly consists of analyses ported from [JITProf](https://github.com/Berkeley-Correctness-Group/JITProf) and [DLint](https://github.com/Berkeley-Correctness-Group/DLint).
 
 What is DLint?
 --------------
@@ -25,7 +25,7 @@ JITProf is a tool that tells you which part of your JavaScript code may be slow 
 For more details, see this [GitHub repository](https://github.com/Berkeley-Correctness-Group/JITProf) and a [technical report](http://www.eecs.berkeley.edu/Pubs/TechRpts/2014/EECS-2014-144.pdf) is available.
 
 
-Install DLint
+Install
 --------------
 Copy and Paste the following command in your console to install [Jalangi2](https://github.com/Samsung/jalangi2) and dynamic analyses
 ```
@@ -41,6 +41,9 @@ rm -rf tmp
 mkdir tmp
 cd ..
 ```
+
+Usage
+--------------
 
 ### Run DLint in Browser
 Under ```jalangi2/tmp``` directory:
