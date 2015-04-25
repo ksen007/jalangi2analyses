@@ -28,7 +28,9 @@
  */
 
 
-// Author: Michael Pradel (michael@binaervarianz.de), Liang Gong (gongliang13@cs.berkeley.edu)
+// Author: Michael Pradel (michael@binaervarianz.de)
+// Liang Gong (gongliang13@cs.berkeley.edu)
+// Ported to Jalangi2 by Liang Gong
 
 /**
  * @dlintShort{Find code that concatenates a string and undefined.}
@@ -58,6 +60,7 @@
         }
 
         this.binary = function(iid, op, left, right, result) {
+            iid = sandbox.getGlobalIID(iid);
             if (op === '+' && typeof result === 'string' && ((typeof left) === 'undefined' || (typeof right) === 'undefined')) {
                 iidToCount[iid] = (iidToCount[iid] | 0) + 1;
                 addDebugInfo(iid, 'left: ' + left + ' (' + (typeof left) + ') | right: ' + right + ' (' + (typeof right) + ') --> ' + result);
@@ -69,6 +72,7 @@
 
         // check if concatenated undefined value propagates to the front end page
         this.putFieldPre = function(iid, base, offset, val) {
+            iid = sandbox.getGlobalIID(iid);
             if (typeof val !== 'string' && typeof val !== 'number')
                 return;
             if (base && base.constructor && (base.constructor.name === '' || typeof base.constructor.name === 'undefined')) {

@@ -27,7 +27,9 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-// Author: Liang Gong (gongliang13@cs.berkeley.edu), Michael Pradel (michael@binaervarianz.de)
+// Author: Liang Gong (gongliang13@cs.berkeley.edu)
+//         Michael Pradel (michael@binaervarianz.de)
+// Ported to Jalangi2 by Liang Gong
 
 /**
  * @dlintShort{Finds extra commas in array literals.}
@@ -75,6 +77,7 @@
         }
 
         this.literal = function(iid, val, hasGetterSetter) {
+            iid = sandbox.getGlobalIID(iid);
             if (checkArrayLiteral(val)) {
                 iidToCount[iid] = (iidToCount[iid] | 0) + 1;
             }

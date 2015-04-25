@@ -28,7 +28,9 @@
  */
 
 
-// Author: Michael Pradel (michael@binaervarianz.de), Liang Gong (gongliang13@cs.berkeley.edu)
+// Author: Michael Pradel (michael@binaervarianz.de)
+//         Liang Gong (gongliang13@cs.berkeley.edu)
+// Ported to Jalangi2 by Liang Gong
 
 /**
  * @dlintShort{Find code that sets the 'prototype' property to a non-object.}
@@ -60,6 +62,7 @@
         var prototypeProps = ["prototype", "__proto__"];
 
         this.putFieldPre = function(iid, base, offset, val) {
+            iid = sandbox.getGlobalIID(iid);
             if (prototypeProps.indexOf(offset) !== -1 && typeof val !== "object") {
                 iidToCount[iid] = (iidToCount[iid] | 0) + 1;
                 

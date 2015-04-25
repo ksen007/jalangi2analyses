@@ -28,6 +28,7 @@
  */
 
 // Author: Michael Pradel (michael@binaervarianz.de)
+// Ported to Jalangi2 by Liang Gong
 
 /**
  * @dlintShort{Find calls of Function.toString().}
@@ -49,6 +50,7 @@
         var iidToCount = {};  // iid: number --> count: number
 
         this.invokeFunPre = function(iid, f, base, args, isConstructor, isMethod) {
+            iid = sandbox.getGlobalIID(iid);
             if (f.name === "toString" && typeof base === "function") {
                 iidToCount[iid] = (iidToCount[iid] | 0) + 1;
             }

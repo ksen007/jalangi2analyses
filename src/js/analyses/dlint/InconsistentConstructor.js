@@ -28,6 +28,7 @@
  */
 
 // Author: Michael Pradel (michael@binaervarianz.de)
+// Ported to Jalangi2 by Liang Gong
 
 /**
  * @dlintShort{Find accesses of the 'constructor' property that do not yield the function that has created the object.}
@@ -50,12 +51,14 @@
         var specialProp = "dlint_constructor"; // TODO: should use SMemory
 
         this.invokeFun = function(iid, f, base, args, result, isConstructor, isMethod) {
+            iid = sandbox.getGlobalIID(iid);
             if (isConstructor && typeof f.name !== 'undefined') {
                 result[specialProp] = f.name;
             }
         };
 
         this.getField = function(iid, base, offset, val) {
+            iid = sandbox.getGlobalIID(iid);
             if (offset === "constructor" && typeof val !== "undefined" &&
                   typeof val.name === "string" && typeof base[specialProp] === 'string' &&
                   val.name !== base[specialProp]) {

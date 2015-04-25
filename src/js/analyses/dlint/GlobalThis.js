@@ -28,6 +28,7 @@
  */
 
 // Author: Michael Pradel (michael@binaervarianz.de)
+// Ported to Jalangi2 by Liang Gong
 
 /**
  * @dlintShort{Find code that refers to 'this' even though 'this' is the global object.}
@@ -50,6 +51,7 @@
         var globalObject = (typeof window === "undefined" || sandbox.isPseudoDOM) ? global : window;
 
         this.read = function(iid, name, val, isGlobal, isPseudoGlobal) {
+            iid = sandbox.getGlobalIID(iid);
             if (name === "this" && val === globalObject) {
                 iidToCount[iid] = (iidToCount[iid] | 0) + 1;
             }

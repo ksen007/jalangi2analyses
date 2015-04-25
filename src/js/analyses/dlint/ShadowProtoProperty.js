@@ -27,8 +27,10 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-// Author: Koushik Sen (ksen@cs.berkeley.edu), Michael Pradel (michael@binaervarianz.de), Liang Gong (gongliang13@cs.berkeley.edu)
-//
+// Author: Koushik Sen (ksen@cs.berkeley.edu)
+//         Michael Pradel (michael@binaervarianz.de)
+//         Liang Gong (gongliang13@cs.berkeley.edu)
+// Ported to Jalangi2 by Liang Gong
 
 /**
  * @dlintShort{Find writes of an object property that shadows a prototype property.}
@@ -61,6 +63,7 @@
         }
 
         this.putFieldPre = function(iid, base, offset, val) {
+            iid = sandbox.getGlobalIID(iid);
             if (Utils.isHTMLElement(base)) {
                 return;
             } else if (Utils.isCSSElement(base)) {

@@ -14,7 +14,10 @@
  * limitations under the License.
  */
 
-// Author: Koushik Sen (ksen@cs.berkeley.edu), Michael Pradel (michael@binaervarianz.de), Liang Gong (gongliang13@cs.berkeley.edu)
+// Author: Koushik Sen (ksen@cs.berkeley.edu)
+//         Michael Pradel (michael@binaervarianz.de)
+//         Liang Gong (gongliang13@cs.berkeley.edu)
+// Ported to Jalangi2 by Liang Gong
 
 /**
  * @dlintShort{Find operations that result in NaN (not a number).}
@@ -53,6 +56,7 @@
         }
 
         this.invokeFun = function(iid, f, base, args, result, isConstructor, isMethod) {
+            iid = sandbox.getGlobalIID(iid);
             var i, len = args.length;
             if (result !== result) {
                 for (i = 0; i < len; i++) {
@@ -86,6 +90,7 @@
         */
 
         this.binary = function(iid, op, left, right, result) {
+            iid = sandbox.getGlobalIID(iid);
             // reduce false positive by checking if the input is NaN
             if (left !== left || right !== right) {
                 return;
@@ -97,6 +102,7 @@
         };
 
         this.unary = function(iid, op, left, result) {
+            iid = sandbox.getGlobalIID(iid);
             // reduce false positive by checking if the input is NaN
             if (left !== left) {
                 return;

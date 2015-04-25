@@ -28,6 +28,7 @@
  */
 
 // Author: Michael Pradel (michael@binaervarianz.de)
+// Ported to Jalangi2 by Liang Gong
 
 /**
  * @dlintShort{Find comparisons of a function with a primitive.}
@@ -73,6 +74,7 @@
         */
 
         this.binary = function(iid, op, left, right, result) {
+            iid = sandbox.getGlobalIID(iid);
             //if(!isReport) return ;
             var type1 = typeof left;
             var type2 = typeof right;

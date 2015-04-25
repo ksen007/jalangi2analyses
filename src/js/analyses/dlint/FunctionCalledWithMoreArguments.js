@@ -27,7 +27,9 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-// Author: Koushik Sen (ksen@cs.berkeley.edu), Michael Pradel (michael@binaervarianz.de)
+// Author: Koushik Sen (ksen@cs.berkeley.edu)
+//         Michael Pradel (michael@binaervarianz.de)
+// Ported to Jalangi2 by Liang Gong
 
 /**
  * @dlintShort{Find functions that are called with more arguments than expected by the function.}
@@ -74,6 +76,7 @@
         };
 
         this.invokeFun = function(iid, f, base, args, result, isConstructor, isMethod) {
+            iid = sandbox.getGlobalIID(iid);
             if (stack.length > 0) {
                 if (stack[stack.length - 1] === DOESNT_READ_ARGUMENTS &&
                       f[HAVE_INSTRUMENTED_TAG] === true &&

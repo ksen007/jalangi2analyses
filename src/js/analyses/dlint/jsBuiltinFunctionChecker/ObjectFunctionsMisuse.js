@@ -29,6 +29,7 @@
 
 
 // Author: Liang Gong (gongliang13@cs.berkeley.edu)
+// Ported to Jalangi2 by Liang Gong
 
 // check for the correct use of RegExp (built-in) functions in JavaScript
 
@@ -377,6 +378,7 @@
         );
 
         this.invokeFun = function(iid, f, base, args, result, isConstructor, isMethod) {
+            arguments[0] = sandbox.getGlobalIID(iid);
             checkFunction(f, arguments);
         };
 

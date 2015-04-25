@@ -26,8 +26,9 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
- 
+
 // Author: Liang Gong (gongliang13@cs.berkeley.edu)
+// Ported to Jalangi2 by Liang Gong
 
 /**
  * @dlintShort{Find code that attempts to write a property of a primitive value.}
@@ -41,21 +42,22 @@
  * @dlintSingleEventPattern
  */
 
-((function (sandbox) {
-	function MyAnalysis() {
+((function(sandbox) {
+    function MyAnalysis() {
 
-		var iidToCount = {};  // iid: number --> count: number
-		var iidToLocation = sandbox.iidToLocation;
-		var DLintWarning = sandbox.DLint.DLintWarning;
+        var iidToCount = {}; // iid: number --> count: number
+        var iidToLocation = sandbox.iidToLocation;
+        var DLintWarning = sandbox.DLint.DLintWarning;
 
-	    this.putFieldPre = function(iid, base, offset, val) {
-	      if (typeof base === 'boolean' || typeof base === 'number' || typeof base === 'string') {
-	        iidToCount[iid] = (iidToCount[iid] | 0) + 1;
-	      }
-	    };
+        this.putFieldPre = function(iid, base, offset, val) {
+            iid = sandbox.getGlobalIID(iid);
+            if (typeof base === 'boolean' || typeof base === 'number' || typeof base === 'string') {
+                iidToCount[iid] = (iidToCount[iid] | 0) + 1;
+            }
+        };
 
-    	this.endExecution = function() {
-    		console.log(JSON.stringify(iidToCount));
+        this.endExecution = function() {
+            console.log(JSON.stringify(iidToCount));
             var warnings = Object.keys(iidToCount).map(function(iid) {
                 var location = iidToLocation(iid);
                 var ret = new DLintWarning("SetFieldOfPrimitive", iid, location, "Observed set field to primitive at " + location + " " + iidToCount[iid] + " time(s).", iidToCount[iid]);

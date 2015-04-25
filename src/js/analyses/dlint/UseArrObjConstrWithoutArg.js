@@ -27,8 +27,8 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-
 // Author: Liang Gong (gongliang13@cs.berkeley.edu)
+// Ported to Jalangi2 by Liang Gong
 
 /**
  * @dlintShort{Find use of ```Array``` and ```Object``` constructor without parameter}
@@ -83,6 +83,7 @@
 
         // check the 'new RegExp(str)' and 'RegExp(str)' case
         this.invokeFun = function(iid, f, base, args, result, isConstructor, isMethod) {
+            iid = sandbox.getGlobalIID(iid);
             if (f === ARRAY_CONSTRUCTOR || f === OBJECT_CONSTRUCTOR) {
                 if (args.length === 0) {
                     iidToCount[iid] = (iidToCount[iid] | 0) + 1;

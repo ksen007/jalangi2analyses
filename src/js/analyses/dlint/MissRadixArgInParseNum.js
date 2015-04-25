@@ -29,6 +29,7 @@
 
 
 // Author: Liang Gong (gongliang13@cs.berkeley.edu)
+// Ported to Jalangi2 by Liang Gong
 
 /**
  * @dlintShort{Find calling ```parseInt``` function without the radix parameter.}
@@ -58,6 +59,7 @@
         var PARSE_INT = parseInt;
 
         this.invokeFun = function(iid, f, base, args, result, isConstructor, isMethod) {
+            iid = sandbox.getGlobalIID(iid);
             if (f === PARSE_INT) {
                 if (args.length === 1) {
                     iidToCount[iid] = (iidToCount[iid] | 0) + 1;

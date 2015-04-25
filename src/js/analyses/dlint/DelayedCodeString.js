@@ -28,6 +28,7 @@
  */
 
 // Author: Michael Pradel (michael@binaervarianz.de)
+// Ported to Jalangi2 by Liang Gong
 
 /**
  * @dlintShort{Find strings passed to setTimeout and setInterval.}
@@ -49,6 +50,7 @@
         var globalObject = typeof window === "undefined" ? global : window;
 
         this.invokeFunPre = function(iid, f, base, args, isConstructor, isMethod) {
+            iid = sandbox.getGlobalIID(iid);
             if ((f.name === "setTimeout" || f.name === "setInterval") &&
                   base === globalObject && typeof args[0] === "string") {
                 iidToCount[iid] = (iidToCount[iid] | 0) + 1;

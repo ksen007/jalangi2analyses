@@ -28,6 +28,7 @@
  */
 
 // Author: Koushik Sen (ksen@cs.berkeley.edu)
+// Ported to Jalangi2 by Liang Gong
 
 /**
  * @dlintShort{Find code that attempts to access the 'undefined' property.}
@@ -54,11 +55,13 @@
         }
 
         this.getFieldPre = function(iid, base, offset) {
+            iid = sandbox.getGlobalIID(iid);
             if (isUnusualOffset(offset))
                 iidToCount[iid] = (iidToCount[iid] | 0) + 1;
         };
 
         this.putFieldPre = function(iid, base, offset, val) {
+            iid = sandbox.getGlobalIID(iid);
             if (isUnusualOffset(offset))
                 iidToCount[iid] = (iidToCount[iid] | 0) + 1;
         };

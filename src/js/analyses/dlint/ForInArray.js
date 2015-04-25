@@ -27,7 +27,9 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-// Author: Michael Pradel (michael@binaervarianz.de), Liang Gong (gongliang13@cs.berkeley.edu)
+// Author: Michael Pradel (michael@binaervarianz.de)
+//         Liang Gong (gongliang13@cs.berkeley.edu)
+// Ported to Jalangi2 by Liang Gong
 
 /**
  * @dlintShort{Find code that iterates over an array with for .. in.}
@@ -58,6 +60,7 @@
         }
 
         this.forinObject = function(iid, val) {
+            iid = sandbox.getGlobalIID(iid);
             if (isArray(val)) {
                 iidToCount[iid] = (iidToCount[iid] | 0) + 1;
             }

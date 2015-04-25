@@ -28,6 +28,7 @@
  */
 
 // Author: Michael Pradel (michael@binaervarianz.de)
+// Ported to Jalangi2 by Liang Gong
 
 /**
  * @dlintShort{Find accesses of the '__proto__' property.}
@@ -43,14 +44,15 @@
         var DLintWarning = sandbox.DLint.DLintWarning;
 
         var iidToCount = {};  // iid: number --> count: number
-
         this.getFieldPre = function(iid, base, offset) {
+            iid = sandbox.getGlobalIID(iid);
             if (offset === "__proto__") {
                 iidToCount[iid] = (iidToCount[iid] | 0) + 1;
             }
         };
 
         this.putFieldPre = function(iid, base, offset, val) {
+            iid = sandbox.getGlobalIID(iid);
             if (offset === "__proto__") {
                 iidToCount[iid] = (iidToCount[iid] | 0) + 1;
             }

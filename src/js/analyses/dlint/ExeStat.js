@@ -29,6 +29,7 @@
 
 
 // Author: Liang Gong (gongliang13@cs.berkeley.edu)
+// Ported to Jalangi2 by Liang Gong
 
 /*
  * This module is written to collect runtime statistics of the target program.
@@ -71,58 +72,72 @@
 		}
 
 		this.invokeFun = function(iid, f, base, args, result, isConstructor, isMethod) {
+			iid = sandbox.getGlobalIID(iid);
 			stat(iid);
 		};
 
 		this.literal = function(iid, val, hasGetterSetter) {
+			iid = sandbox.getGlobalIID(iid);
 			stat(iid);
 		};
 
 		this.forinObject = function(iid, val) {
+			iid = sandbox.getGlobalIID(iid);
 			stat(iid);
 		};
 
 		this.declare = function(iid, name, val, isArgument, argumentIndex, isCatchParam) {
+			iid = sandbox.getGlobalIID(iid);
 			stat(iid);
 		};
 
 		this.getField = function(iid, base, offset, val) {
+			iid = sandbox.getGlobalIID(iid);
 			stat(iid);
 		};
 
 		this.putField = function(iid, base, offset, val) {
+			iid = sandbox.getGlobalIID(iid);
 			stat(iid);
 		};
 
 		this.read = function(iid, name, val, isGlobal, isPseudoGlobal) {
+			iid = sandbox.getGlobalIID(iid);
 			stat(iid);
 		};
 
 		this.write = function(iid, name, val, lhs, isGlobal, isPseudoGlobal) {
+			iid = sandbox.getGlobalIID(iid);
 			stat(iid);
 		};
 
 		this.functionEnter = function(iid, f, dis, args) {
+			iid = sandbox.getGlobalIID(iid);
 			stat(iid);
 		};
 
 		this.functionExit = function(iid, returnVal, exceptionVal) {
+			iid = sandbox.getGlobalIID(iid);
 			stat(iid);
 		};
 
 		this.binary = function(iid, op, left, right, result) {
+			iid = sandbox.getGlobalIID(iid);
 			stat(iid);
 		};
 
 		this.unary = function(iid, op, left, result) {
+			iid = sandbox.getGlobalIID(iid);
 			stat(iid);
 		};
 
 		this.conditional = function(iid, result) {
+			iid = sandbox.getGlobalIID(iid);
 			stat(iid);
 		};
 
 		this.instrumentCode = function(iid, ast) {
+			iid = sandbox.getGlobalIID(iid);
 			stat(iid);
 		};
 

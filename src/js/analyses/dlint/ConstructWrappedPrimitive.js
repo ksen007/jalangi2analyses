@@ -27,7 +27,9 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-// Author: Michael Pradel (michael@binaervarianz.de), Liang Gong (gongliang13@cs.berkeley.edu)
+// Author: Michael Pradel (michael@binaervarianz.de)
+// Liang Gong (gongliang13@cs.berkeley.edu)
+// Ported to Jalangi2 by Liang Gong
 
 /**
  * @dlintShort{Finds calls of constructors that should not be called.}
@@ -54,6 +56,7 @@
         var MathFct = Math;
 
         this.invokeFunPre = function(iid, f, base, args, isConstructor, isMethod) {
+            iid = sandbox.getGlobalIID(iid);
             if (isConstructor) {
                 if (f === NumberFct)
                     iidToCountNumber[iid] = (iidToCountNumber[iid] | 0) + 1;

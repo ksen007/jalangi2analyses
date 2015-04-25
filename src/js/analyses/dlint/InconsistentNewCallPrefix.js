@@ -29,6 +29,7 @@
 
 
 // Author: Liang Gong (gongliang13@cs.berkeley.edu)
+// Ported to Jalangi2 by Liang Gong
 
 /**
  * @dlintShort{Find inconsistent usages of constructor functions.}
@@ -60,6 +61,7 @@
         var specialProp = '_newPrefixUsage';
 
         this.invokeFun = function(iid, f, base, args, result, isConstructor, isMethod) {
+            iid = sandbox.getGlobalIID(iid);
             var newProp;
             // new hidden property of the function
             if (isConstructor) {

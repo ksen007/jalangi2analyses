@@ -28,6 +28,7 @@
  */
 
 // Author: Liang Gong (gongliang13@cs.berkeley.edu)
+// Ported to Jalangi2 by Liang Gong
 
 /**
  * @dlintShort{Find numerical overflows and underflows.}
@@ -93,6 +94,7 @@
         }
 
         this.invokeFun = function(iid, f, base, args, result, isConstructor, isMethod) {
+            iid = sandbox.getGlobalIID(iid);
             if (isNativeFunction(f) && isInfinity(result)) {
                 for(var i=0;i<args.length;i++){
                     if(isInfinity(args[i])) {
@@ -113,6 +115,7 @@
         */
 
         this.binary = function(iid, op, left, right, result) {
+            iid = sandbox.getGlobalIID(iid);
             if (!(isInfinity(left)) && !(isInfinity(right)) && isInfinity(result)) {
                 iidToCount[iid] = (iidToCount[iid] | 0) + 1;
                 addDebugInfo(iid, ' left: ' + left + ' | op: ' + op + ' | right:' + right + ' --> ' + result);
@@ -120,6 +123,7 @@
         };
 
         this.unary = function(iid, op, left, result) {
+            iid = sandbox.getGlobalIID(iid);
             if (!isInfinity(left) && isInfinity(result)) {
                 iidToCount[iid] = (iidToCount[iid] | 0) + 1;
                 addDebugInfo(iid, ' unary opearnd: ' + left + ' | op: ' + op + ' --> ' + result);

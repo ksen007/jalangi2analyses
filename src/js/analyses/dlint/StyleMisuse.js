@@ -28,6 +28,7 @@
  */
 
 // Author: Liang Gong (gongliang13@cs.berkeley.edu)
+// Ported to Jalangi2 by Liang Gong
 
 /**
  * @dlintShort{Find code that compares a CSS object with a string.}
@@ -61,6 +62,7 @@
         }
 
         this.binary = function(iid, op, left, right, result_c) {
+            iid = sandbox.getGlobalIID(iid);
             if (typeof cssConstructor === 'undefined') {
                 loadCssConstructor();
             }

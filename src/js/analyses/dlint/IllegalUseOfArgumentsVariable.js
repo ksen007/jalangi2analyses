@@ -28,7 +28,9 @@
  */
 
 
-// Author: Michael Pradel (michael@binaervarianz.de), Liang Gong (gongliang13@cs.berkeley.edu)
+// Author: Michael Pradel (michael@binaervarianz.de)
+//         Liang Gong (gongliang13@cs.berkeley.edu)
+// Ported to Jalangi2 by Liang Gong
 
 // patch: if an object is attached property callee, caller, or length, then it is not an arguments object.
 // arguments.caller no longer exists
@@ -67,6 +69,7 @@
         }
 
         this.getFieldPre = function(iid, base, offset) {
+            iid = sandbox.getGlobalIID(iid);
             // MP: Leads to false positives when code checks if 'arguments' has some other properties.
             //     E.g., underscore.js's every() checks whether an object has an 'every' property and
             //     if not, uses only properties provided by 'arguments'.
@@ -83,6 +86,7 @@
         };
 
         this.putFieldPre = function(iid, base, offset, val) {
+            iid = sandbox.getGlobalIID(iid);
             if (isArgumentsObject(base)) {
                 iidToCount[iid] = (iidToCount[iid] | 0) + 1;
             } else {
@@ -111,6 +115,7 @@
         };
 
         this.invokeFun = function(iid, f, base, args, result, isConstructor, isMethod) {
+            iid = sandbox.getGlobalIID(iid);
             if (f === Array.prototype.concat && args.length > 0 && isArgumentsObject(args[0])) {
                 iidToCount[iid] = (iidToCount[iid] | 0) + 1;
             }

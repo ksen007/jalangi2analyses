@@ -26,10 +26,10 @@
 	    //Create the document
 	    sandbox.document = jsdom.jsdom(docStr);
 	}*/
-	if (typeof document === 'undefined' && typeof window === 'undefined') {
+	if (!sandbox.Constants.isBrowser) {
 		// --- start loading pseudo DOM ---
 		var jsdom = require('jsdom');
-		var docStr =
+		var docStr = 
 "\
 <!DOCTYPE html>\
 <html>\

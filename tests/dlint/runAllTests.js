@@ -27,7 +27,8 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-// Author: Michael Pradel (michael@binaervarianz.de), Liang Gong (gongliang13@cs.berkeley.edu)
+// Author: Michael Pradel (michael@binaervarianz.de)
+//         Liang Gong (gongliang13@cs.berkeley.edu)
 
 (function() {
   var fs = require('fs');
@@ -99,7 +100,8 @@
     //  return;
     //}
     //testRunning = true;
-    var cmd = "python ./scripts/dlint.py " + testDir + file.replace(/.js$/, '');
+    // var cmd = "python ./scripts/dlint.py " + testDir + file.replace(/.js$/, '');
+    var cmd = "./scripts/dlint_unit_test.sh " + testDir + file.replace(/.js$/, '');
     child_process.exec(cmd,
       function(error, stdout, stderr) {
         if (verbose)
@@ -131,7 +133,7 @@
               verbose = true;
               console.log();
             }
-          } else if (stdout.indexOf('^') >=0 || stdout.indexOf('Error:') >= 0) {
+          } else if (stdout.indexOf('^') >= 0 || stdout.indexOf('Error:') >= 0) {
             verbose = true;
             console.log();
           }

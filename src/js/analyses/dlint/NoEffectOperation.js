@@ -28,6 +28,7 @@
  */
 
 // Author: Liang Gong (gongliang13@cs.berkeley.edu)
+// Ported to Jalangi2 by Liang Gong
 
 /**
  * @dlintShort{Find property writes that have no effect.}
@@ -71,6 +72,7 @@
 
 		// if setting property of an object has no actual effect, then report a bug.
 		this.putField = function(iid, base, offset, val) {
+			iid = sandbox.getGlobalIID(iid);
 			if (base && base[offset] !== val && !Utils.ISNAN(val)) {
 				if (typeof base === 'number' ||
 					typeof base === 'boolean' ||

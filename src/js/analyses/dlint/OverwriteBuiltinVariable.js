@@ -27,7 +27,9 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-// Author: Michael Pradel (michael@binaervarianz.de), Liang Gong (gongliang13@cs.berkeley.edu)
+// Author: Michael Pradel (michael@binaervarianz.de)
+//         Liang Gong (gongliang13@cs.berkeley.edu)
+// Ported to Jalangi2 by Liang Gong
 
 /**
  * @dlintShort{Find assignments that overwrite a built-in variable.}
@@ -68,6 +70,7 @@
         }
 
         this.write = function(iid, name, val, lhs, isGlobal, isPseudoGlobal) {
+            iid = sandbox.getGlobalIID(iid);
             /*forbNameList.map(function(forbName) {
                 if (name === forbName) {
                     iidToCount[iid] = (iidToCount[iid] | 0) + 1;

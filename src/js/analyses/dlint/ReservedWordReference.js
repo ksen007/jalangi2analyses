@@ -27,8 +27,8 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-
 // Author: Liang Gong (gongliang13@cs.berkeley.edu)
+// Ported to Jalangi2 by Liang Gong
 
 // This analysis checks using the reserved words as reference names
 // For example:
@@ -63,6 +63,7 @@
         var forbNameList = ['enum', 'await', 'implements', 'static', 'public', 'package', 'interface', 'protected', 'privated', 'abstract', 'float', 'short', 'boolean', 'goto', 'synchronized', 'byte', 'int', 'transient', 'char', 'long', 'volatile', 'double', 'native', 'final', 'let', 'package', 'yield'];
 
         this.write = function(iid, name, val, lhs, isGlobal, isPseudoGlobal) {
+            iid = sandbox.getGlobalIID(iid);
             /*
             forbNameList.map(function(forbName) {
                 if (name === forbName) {

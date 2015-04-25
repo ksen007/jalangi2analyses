@@ -28,7 +28,9 @@
  */
 
 
-// Author: Liang Gong (gongliang13@cs.berkeley.edu), Michael Pradel (michael@binaervarianz.de)
+// Author: Liang Gong (gongliang13@cs.berkeley.edu)
+//         Michael Pradel (michael@binaervarianz.de)
+// Ported to Jalangi2 by Liang Gong
 
 /**
  * @dlintShort{Finds calls of constructors that wrap a primitive into an Object, such as 'new Number()'.}
@@ -63,6 +65,7 @@
         }
 
         this.conditional = function(iid, result) {
+            iid = sandbox.getGlobalIID(iid);
             if (result instanceof BooleanFct && result.valueOf() === false) {
                 iidToCount[iid] = (iidToCount[iid] | 0) + 1;
                 addDebugInfo(iid, 'Boolean(false) in conditional @' + iidToLocation(iid));
@@ -146,6 +149,7 @@
         }
 
         this.binary = function(iid, op, left, right, result) {
+            iid = sandbox.getGlobalIID(iid);
             var left_prim = Utils.toPrimitive(left);
             var right_prim = Utils.toPrimitive(right);
             var prim_res = binaryOp(op, left_prim, right_prim);

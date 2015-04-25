@@ -28,6 +28,7 @@
  */
 
 // Author: Liang Gong (gongliang13@cs.berkeley.edu)
+// Ported to Jalangi2 by Liang Gong
 
 /**
  * @dlintShort{Find calls of eval() and its evil twins.}
@@ -73,6 +74,7 @@
     var iidToCount = {}; // iid: number --> count: number
 
     this.invokeFun = function(iid, f, base, args, result, isConstructor, isMethod) {
+      iid = sandbox.getGlobalIID(iid);
       if (f === EVAL) { // jalangi only faciliates this to check indirect call of eval
         iidToCount[iid] = (iidToCount[iid] | 0) + 1;
       } else if (f === FUNCTION) {
@@ -89,6 +91,7 @@
     };
 
     this.instrumentCode = function (iid, ast) {
+      iid = sandbox.getGlobalIID(iid);
       // this checks the direct call of eval
       iidToCount[iid] = (iidToCount[iid] | 0) + 1;
     };

@@ -28,6 +28,7 @@
  */
 
 // Author: Michael Pradel (michael@binaervarianz.de)
+// Ported to Jalangi2 by Liang Gong
 
 /**
  * @dlintShort{Find code that overwrites in existing prototype object.}
@@ -60,6 +61,7 @@
         }
 
         this.putFieldPre = function(iid, base, offset, val) {
+            iid = sandbox.getGlobalIID(iid);
             if (prototypeProps.indexOf(offset) !== -1 &&
                   hasUserDefinedPrototype(base)) {
                 iidToCount[iid] = (iidToCount[iid] | 0) + 1;

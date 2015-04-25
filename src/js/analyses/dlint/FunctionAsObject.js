@@ -27,7 +27,9 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-// Author: Michael Pradel (michael@binaervarianz.de), Liang Gong (gongliang13@cs.berkeley.edu)
+// Author: Michael Pradel (michael@binaervarianz.de)
+//         Liang Gong (gongliang13@cs.berkeley.edu)
+// Ported to Jalangi2 by Liang Gong
 
 // NOTE: This analysis may give many false warnings. If it does, we should disable it.
 
@@ -60,6 +62,7 @@
         }
 
         this.getField = function(iid, base, offset, val) {
+            iid = sandbox.getGlobalIID(iid);
             if (typeof base === "function" && offset !== "prototype" &&
                 typeof val !== "function" &&
                 offset !== "name" && offset !== "arguments" && offset !== "caller" &&
@@ -70,6 +73,7 @@
         };
 
         this.putField = function(iid, base, offset, val) {
+            iid = sandbox.getGlobalIID(iid);
             if (typeof base === "function" && offset !== "prototype" &&
                 typeof val !== "function") {
                 iidToCount[iid] = (iidToCount[iid] | 0) + 1;

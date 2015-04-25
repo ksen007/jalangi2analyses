@@ -28,7 +28,9 @@
  */
 
 
-// Author: Michael Pradel (michael@binaervarianz.de), Liang Gong (gongliang13@cs.berkeley.edu)
+// Author: Michael Pradel (michael@binaervarianz.de)
+//         Liang Gong (gongliang13@cs.berkeley.edu)
+// Ported to Jalangi2 by Liang Gong
 
 /**
  * @dlintShort{Find code that reads or writes a non-numeric array property.}
@@ -83,6 +85,7 @@
         }
 
         this.getFieldPre = function(iid, base, offset) {
+            iid = sandbox.getGlobalIID(iid);
             if (accessesNonNumericArrayProperty(base, offset)) {
                 iidToCount[iid] = (iidToCount[iid] | 0) + 1;
                 addDebugInfo(iid, 'get field from array, offset: ' + offset);
@@ -90,6 +93,7 @@
         };
 
         this.putFieldPre = function(iid, base, offset, val) {
+            iid = sandbox.getGlobalIID(iid);
             if (accessesNonNumericArrayProperty(base, offset)) {
                 iidToCount[iid] = (iidToCount[iid] | 0) + 1;
                 addDebugInfo(iid, 'put field to array, offset: ' + offset);

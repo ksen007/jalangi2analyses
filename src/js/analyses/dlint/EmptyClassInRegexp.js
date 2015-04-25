@@ -29,6 +29,7 @@
 
 
 // Author: Liang Gong (gongliang13@cs.berkeley.edu)
+// Ported to Jalangi2 by Liang Gong
 
 /**
  * @dlintShort{Find empty class in regular expression.}
@@ -79,6 +80,7 @@
 
         // check the 'new RegExp(str)' and 'RegExp(str)' case
         this.invokeFun = function(iid, f, base, args, result, isConstructor, isMethod) {
+            iid = sandbox.getGlobalIID(iid);
             if (f === REGEXP_CONSTRUCTOR) {
                 if (typeof args[0] === 'string') {
                     checkRegExp(args[0], iid);
@@ -88,6 +90,7 @@
 
         // check the regular expression literal case, e.g., /abc/
         this.literal = function(iid, val, hasGetterSetter) {
+            iid = sandbox.getGlobalIID(iid);
             if (val && typeof val === 'object' && val.constructor === REGEXP_CONSTRUCTOR) {
                 checkRegExp(val + '', iid);
             }

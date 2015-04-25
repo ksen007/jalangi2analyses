@@ -29,6 +29,7 @@
 
 // Author: Michael Pradel (michael@binaervarianz.de)
 //         Liang Gong (gongliang13@cs.berkeley.edu)
+// Ported to Jalangi2 by Liang Gong
 
 /**
  * @dlintShort{Find code that adds an enumerable property to Object.}
@@ -50,6 +51,7 @@
         var iidToCount = {};  // iid: number --> count: number
 
         this.invokeFunPre = function(iid, f, base, args, isConstructor, isMethod) {
+            iid = sandbox.getGlobalIID(iid);
             if (f.name === "defineProperty" && base === Object && args[0] === Object.prototype &&
                   args.length === 3 && args[2].enumerable === true) {
                 iidToCount[iid] = (iidToCount[iid] | 0) + 1;
@@ -57,6 +59,7 @@
         };
 
         this.putField = function(iid, base, offset, val) {
+            iid = sandbox.getGlobalIID(iid);
             if (base === Object.prototype) {
                 iidToCount[iid] = (iidToCount[iid] | 0) + 1;
             }

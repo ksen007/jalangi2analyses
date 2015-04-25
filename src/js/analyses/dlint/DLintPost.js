@@ -27,20 +27,29 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-// Author: Michael Pradel (michael@binaervarianz.de), Koushik Sen (ksen@cs.berkeley.edu)
+// Author: Michael Pradel (michael@binaervarianz.de)
+//         Koushik Sen (ksen@cs.berkeley.edu)
+//         Liang Gong (gongliang@cs.berkeley.edu)
+// Ported to Jalangi2 by Liang Gong
 
 (function(sandbox) {
     function DLintPost() {
         var Constants = sandbox.Constants;
         var HOP = Constants.HOP;
 
+        function showWarningOnWebPage(allWarnings) {
+            for (var i = 0; i < allWarnings.length; i++) {
+                sandbox.log(allWarnings[i].details + '<br>');
+            }
+        }
+
         this.endExecution = function() {
             var allWarnings = summarizeWarnings();
 
             // 1) write warnings to file
             if (sandbox.Constants.isBrowser) {
-                console.log("Sending results to jalangiFF");
-                window.$jalangiFFLogResult(JSON.stringify(allWarnings, 0, 2), true);
+                // sandbox.Results.execute()
+                showWarningOnWebPage(allWarnings);
             } else {
                 var fs = require("fs");
                 var outFile = process.cwd() + "/analysisResults.json";

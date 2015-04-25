@@ -28,6 +28,7 @@
  */
 
 // Author: Liang Gong (gongliang13@cs.berkeley.edu)
+// Ported to Jalangi2 by Liang Gong
 
 /**
  * @dlintShort{Find equality comparison between two floating point numbers.}
@@ -97,6 +98,7 @@
         }
 
         this.binary = function(iid, op, left, right, result) {
+            iid = sandbox.getGlobalIID(iid);
             if (hasPrecisionError(op, left, right)) {
                 iidToCount[iid] = (iidToCount[iid] | 0) + 1;
                 addDebugInfo(iid, ' left: ' + left + ' | op: ' + op + ' | right:' + right + ' --> ' + result);

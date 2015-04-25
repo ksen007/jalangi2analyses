@@ -28,6 +28,7 @@
  */
 
 // Author: Michael Pradel (michael@binaervarianz.de)
+// Ported to Jalangi2 by Liang Gong
 
 /**
  * @dlintShort{Find accesses of non-existing properties,
@@ -82,6 +83,7 @@
         }
 
         this.getField = function(iid, base, offset, val) {
+            iid = sandbox.getGlobalIID(iid);
             if (offset !== undefined && val === undefined && offset.length >= minLength) {
                 var allProps = Object.keys(base);
                 var otherProp = mostSimilarName(offset, allProps);
