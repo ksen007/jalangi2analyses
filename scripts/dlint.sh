@@ -1,7 +1,7 @@
 #!/bin/bash
 # run dlint in browser
 # read the raw parameter
-param=`cat ../../jalangi2analyses/config/dlint/analyses`
+param=`cat ../../dynamicAnalyses/config/dlint/analyses`
 replaceStr=' '
 param="${param//\\n/$replaceStr}"
 
@@ -14,9 +14,9 @@ param="${param//$oldStr/$replaceStr}"
 
 # --analysis src/js/analyses/jitprof/utils/RuntimeDB.js
 # ->
-# ../../jalangi2analyses/src/js/analyses/jitprof/utils/RuntimeDB.js
+# ../../dynamicAnalyses/src/js/analyses/jitprof/utils/RuntimeDB.js
 oldStr='--analysis src'
-replaceStr='../../jalangi2analyses/src'
+replaceStr='../../dynamicAnalyses/src'
 param="${param//$oldStr/$replaceStr}"
 
 # --analysis ../jalangi2/src/js/sample_analyses/ChainedAnalysesNoCheck.js
