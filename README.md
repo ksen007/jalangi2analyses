@@ -26,16 +26,14 @@ Under ```dynamicAnalyses``` directory:
 node tests/dlint/runAllTests.js 
 ```
 
-Assume that Jalangi 2 is installed at ../jalangi2
+### Run JITProf in Browser
+Under ```jalangi2/tmp``` directory:
 ```
-cd ../jalangi2
-rm -rf tmp
-mkdir tmp
-cd tmp
-../scripts/mitmproxywrapper.py -t -q --anticache -s "../scripts/proxy.py ../src/js/sample_analyses/ChainedAnalysesNoCheck.js ../../jalangi2analyses/src/js/analyses/jitprof/utils/Utils.js ../../jalangi2analyses/src/js/analyses/jitprof/utils/RuntimeDB.js ../../jalangi2analyses/src/js/analyses/jitprof/TrackHiddenClass.js  ../../jalangi2analyses/src/js/analyses/jitprof/AccessUndefArrayElem.js ../../jalangi2analyses/src/js/analyses/jitprof/SwitchArrayType.js"
+../scripts/mitmproxywrapper.py -t -q --anticache -s "../scripts/proxy.py ../src/js/sample_analyses/ChainedAnalysesNoCheck.js ../../dynamicAnalyses/src/js/analyses/jitprof/utils/Utils.js ../../dynamicAnalyses/src/js/analyses/jitprof/utils/RuntimeDB.js ../../dynamicAnalyses/src/js/analyses/jitprof/TrackHiddenClass.js  ../../dynamicAnalyses/src/js/analyses/jitprof/AccessUndefArrayElem.js ../../dynamicAnalyses/src/js/analyses/jitprof/SwitchArrayType.js"
 ```
 
-Command line
+### Run JITProf on a Single File
+Under ```dynamicAnalyses``` directory:
 ```
 node ../jalangi2/src/js/commands/jalangi.js --inlineIID --inlineSource --analysis ../jalangi2/src/js/sample_analyses/ChainedAnalysesNoCheck.js --analysis src/js/analyses/jitprof/utils/Utils.js --analysis src/js/analyses/jitprof/utils/RuntimeDB.js --analysis src/js/analyses/jitprof/TrackHiddenClass.js  --analysis src/js/analyses/jitprof/AccessUndefArrayElem.js --analysis src/js/analyses/jitprof/SwitchArrayType.js tests/jitprof/JITAwareTest
 ```
