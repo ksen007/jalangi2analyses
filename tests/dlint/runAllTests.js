@@ -101,7 +101,7 @@
     //}
     //testRunning = true;
     // var cmd = "python ./scripts/dlint.py " + testDir + file.replace(/.js$/, '');
-    var cmd = "./scripts/dlint_unit_test.sh " + testDir + file.replace(/.js$/, '');
+    var cmd = "./scripts/dlint_unit.sh " + testDir + file.replace(/.js$/, '');
     child_process.exec(cmd,
       function(error, stdout, stderr) {
         if (verbose)

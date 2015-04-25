@@ -41,6 +41,4 @@
 --analysis src/js/analyses/dlint/jsBuiltinFunctionChecker/GlobalFunctionsMisuse.js
 --analysis src/js/analyses/dlint/jsBuiltinFunctionChecker/ArrayFunctionsMisuse.js
 --analysis src/js/analyses/dlint/jsBuiltinFunctionChecker/DateFunctionsMisuse.js
---analysis src/js/analyses/dlint/ExeStat.js
---analysis src/js/analyses/dlint/Timer.js
 --analysis src/js/analyses/dlint/DLintPost.js

@@ -54,7 +54,14 @@ This command sets a web proxy, open a web page with your browser (e.g., Chrome o
 Click the ```Jalangi``` button on your web page to view the analysis result.  
 To close the web proxy, simply rerun the above command.
 
-### Unit Test for DLint
+### Run DLint on a Single File
+Suppose you want to run DLint on file: ```tests/dlint/buggy_NoEffectOperation.js```.  
+Under ```dynamicAnalyses``` directory:
+```
+./scripts/dlint_unit.sh tests/dlint/buggy_NoEffectOperation
+```
+
+### Run Unit Tests for DLint
 Under ```dynamicAnalyses``` directory:
 ```
 node tests/dlint/runAllTests.js 
@@ -70,7 +77,8 @@ Click the ```Jalangi``` button on your web page to view the analysis result.
 To close the web proxy, simply rerun the above command.
 
 ### Run JITProf on a Single File
+Suppose you want to run JITProf on file: ```tests/jitprof/JITAwareTest.js```.  
 Under ```dynamicAnalyses``` directory:
 ```
-node ../jalangi2/src/js/commands/jalangi.js --inlineIID --inlineSource --analysis ../jalangi2/src/js/sample_analyses/ChainedAnalysesNoCheck.js --analysis src/js/analyses/jitprof/utils/Utils.js --analysis src/js/analyses/jitprof/utils/RuntimeDB.js --analysis src/js/analyses/jitprof/TrackHiddenClass.js  --analysis src/js/analyses/jitprof/AccessUndefArrayElem.js --analysis src/js/analyses/jitprof/SwitchArrayType.js tests/jitprof/JITAwareTest
+./scripts/jitprof_unit.sh tests/jitprof/JITAwareTest
 ```
