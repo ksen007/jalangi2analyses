@@ -19,6 +19,9 @@ Under ```jalangi2/tmp``` directory:
 ```
 ../../dynamicAnalyses/scripts/dlint.sh
 ```
+This command sets a web proxy, open a web page with your browser (e.g., Chrome or Safari).
+Click the ```Jalangi``` button on your web page to view the analysis result.  
+To close the web proxy, simply rerun the above command.
 
 ### Unit Test for DLint
 Under ```dynamicAnalyses``` directory:
@@ -29,8 +32,11 @@ node tests/dlint/runAllTests.js
 ### Run JITProf in Browser
 Under ```jalangi2/tmp``` directory:
 ```
-../scripts/mitmproxywrapper.py -t -q --anticache -s "../scripts/proxy.py ../src/js/sample_analyses/ChainedAnalysesNoCheck.js ../../dynamicAnalyses/src/js/analyses/jitprof/utils/Utils.js ../../dynamicAnalyses/src/js/analyses/jitprof/utils/RuntimeDB.js ../../dynamicAnalyses/src/js/analyses/jitprof/TrackHiddenClass.js  ../../dynamicAnalyses/src/js/analyses/jitprof/AccessUndefArrayElem.js ../../dynamicAnalyses/src/js/analyses/jitprof/SwitchArrayType.js"
+../../dynamicAnalyses/scripts/jitprof.sh
 ```
+This command sets a web proxy, open a web page with your browser (e.g., Chrome or Safari).
+Click the ```Jalangi``` button on your web page to view the analysis result.  
+To close the web proxy, simply rerun the above command.
 
 ### Run JITProf on a Single File
 Under ```dynamicAnalyses``` directory:
