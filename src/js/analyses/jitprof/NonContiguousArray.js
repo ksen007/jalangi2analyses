@@ -92,7 +92,6 @@
                 '\t * Fast Elements: linear storage for compact key sets\n' +
                 '\t * Dictionary Elements: hash table storage otherwise\n' +
                 'It\'s best not to cause the array storage to flip from one type to another.');
-                printToDOM()
 
             } catch (e) {
                 console.log("error!!");
