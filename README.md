@@ -8,15 +8,19 @@ This repository contains dynamic analyses for JavaScript code based on [Jalangi2
 What is DLint?
 --------------
 
-DLint is a tool for dynamically checking JavaScript coding practices.   
-Briefly speaking, [JSHint](http://jshint.com/), [JSLint](http://www.jslint.com/) and [ESLint](http://eslint.org/) uses static analysis (scan the code) to find bad coding practices, while DLint uses dynamic analysis (by analysing runtime behavior) to do the detection.   
+DLint is a tool for dynamically checking JavaScript coding practices.
+
+Briefly speaking, [JSHint](http://jshint.com/), [JSLint](http://www.jslint.com/) and [ESLint](http://eslint.org/) uses static analysis (scan the code) to find bad coding practices, while DLint uses dynamic analysis (by analysing runtime behavior) to do the detection.
+
 By analyzing runtime information, DLint is capable of capturing violations of coding practices missed by those static analysis tools.
-(See an [online demo](https://www.eecs.berkeley.edu/~gongliang13/jalangi_ff/demo_integrated.htm) of dynamic analysis.)  
+(See an [online demo](https://www.eecs.berkeley.edu/~gongliang13/jalangi_ff/demo_integrated.htm) of dynamic analysis.)
+
 For more details, a [Wiki page](https://github.com/Berkeley-Correctness-Group/DLint/wiki) and a [technical report](http://www.eecs.berkeley.edu/Pubs/TechRpts/2015/EECS-2015-5.pdf) is available (to appear in [ISSTA'15](http://issta2015.cs.uoregon.edu/) soon).
 
 What is JITProf?
 ----------------
 JITProf is a tool that tells you which part of your JavaScript code may be slow on JIT-engine. We call those slow code **JIT-unfriendly code**.  
+
 For more details, see this [GitHub repository](https://github.com/Berkeley-Correctness-Group/JITProf) and this [technical report](http://www.eecs.berkeley.edu/Pubs/TechRpts/2014/EECS-2014-144.pdf).
 
 
@@ -24,7 +28,8 @@ Install
 --------------
 
 Make sure that your computer meets these [requirements](https://github.com/JacksonGL/dynamicAnalyses/wiki/Requirements-for-Running).  
-To install, copy and Paste the following command in your console to install [Jalangi2](https://github.com/Samsung/jalangi2) and dynamic analyses
+
+To install, copy and Paste the following command in your console:
 ```
 mkdir dymAnalysis
 cd dymAnalysis
