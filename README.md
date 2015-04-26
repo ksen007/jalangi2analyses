@@ -1,8 +1,8 @@
 # Dynamic Analyses 
 
-<!---
-[Wiki](https://github.com/Berkeley-Correctness-Group/DLint/wiki) | [Configuring](https://github.com/Berkeley-Correctness-Group/DLint/wiki/DLint-Developer-Guide#how-to-configure-dlint-checkers) | [Checkers](https://github.com/Berkeley-Correctness-Group/DLint/wiki/DLint-Checkers) | [Develop](https://github.com/Berkeley-Correctness-Group/DLint/wiki/DLint-Developer-Guide) | [Mailing List](https://groups.google.com/forum/#!forum/dlint)
--->
+
+[Wiki](https://github.com/JacksonGL/dynamicAnalyses/wiki/Wiki-Home) | [Configuring](https://github.com/JacksonGL/dynamicAnalyses/wiki/Configuration) | [Checkers](https://github.com/Berkeley-Correctness-Group/DLint/wiki/DLint-Checkers) | [Develop](https://github.com/JacksonGL/dynamicAnalyses/wiki/Developer-Guide) | [Mailing List](https://groups.google.com/forum/#!forum/dlint)
+
 
 
 This repository contains dynamic analyses for JavaScript code based on [Jalangi2](https://github.com/Samsung/jalangi2). It mainly consists of analyses ported from [JITProf](https://github.com/Berkeley-Correctness-Group/JITProf) and [DLint](https://github.com/Berkeley-Correctness-Group/DLint).
