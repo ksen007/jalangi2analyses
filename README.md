@@ -53,7 +53,7 @@ Under ```jalangi2/tmp``` directory:
 ../../dynamicAnalyses/scripts/dlint.sh
 ```
 This command sets a web proxy, open a web page with your browser (e.g., Chrome or Safari).
-Click the ```Jalangi``` button on your web page to view the analysis result.  
+Click the (![```Jalangi``` button](https://github.com/JacksonGL/dynamicAnalyses/blob/master/doc/jalangi_button.png)) on your web page to view the analysis result.  
 To close the web proxy, simply rerun the above command.
 
 ### Run DLint on a Single File
