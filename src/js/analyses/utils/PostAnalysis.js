@@ -33,7 +33,7 @@
 // Ported to Jalangi2 by Liang Gong
 
 (function(sandbox) {
-    function DLintPost() {
+    function PostAnalysis() {
         var Constants = sandbox.Constants;
         var HOP = Constants.HOP;
 
@@ -72,6 +72,6 @@
         }
     }
 
-    sandbox.analysis = new DLintPost();
+    sandbox.analysis = new PostAnalysis();
 
 }(J$));

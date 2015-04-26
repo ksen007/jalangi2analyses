@@ -1,5 +1,5 @@
 --analysis ../jalangi2/src/js/sample_analyses/ChainedAnalysesNoCheck.js
---analysis src/js/analyses/dlint/DLintPre.js
+--analysis src/js/analyses/utils/PreAnalysis.js
 --analysis src/js/analyses/dlint/utils/Utils.js
 --analysis src/js/analyses/dlint/utils/document.js
 --analysis src/js/analyses/dlint/utils/RuntimeDB.js
@@ -41,4 +41,4 @@
 --analysis src/js/analyses/dlint/jsBuiltinFunctionChecker/GlobalFunctionsMisuse.js
 --analysis src/js/analyses/dlint/jsBuiltinFunctionChecker/ArrayFunctionsMisuse.js
 --analysis src/js/analyses/dlint/jsBuiltinFunctionChecker/DateFunctionsMisuse.js
---analysis src/js/analyses/dlint/DLintPost.js
+--analysis src/js/analyses/utils/PostAnalysis.js

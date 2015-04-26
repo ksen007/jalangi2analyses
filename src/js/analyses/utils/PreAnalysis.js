@@ -28,43 +28,29 @@
  */
 
 // Author: Michael Pradel (michael@binaervarianz.de)
+//         Liang Gong (gongliang13@cs.berkeley.edu)
 // Ported to Jalangi2 by Liang Gong
 
 (function(sandbox) {
-    function DLint() {
+    function PreAnalysis() {
         this.allWarnings = [];
     }
 
-    DLint.prototype.addWarnings = function(warnings) {
+    PreAnalysis.prototype.addWarnings = function(warnings) {
         for (var i = 0; i < warnings.length; i++) {
             this.allWarnings.push(warnings[i]);
         }
     };
 
-    function DLintWarning(analysis, iid, locationString, details, count) {
+    function Warning(analysis, iid, locationString, details, count) {
         this.analysis = analysis;
         this.iid = iid;
         this.locationString = locationString;
         this.details = details;
         this.count = count;
     }
-
-    /*
-    if (sandbox.Constants.isBrowser) {
-        window.addEventListener("DOMContentLoaded", function() {
-            var p = window.document.createElement("p");
-            p.className = "jalangiFF-p";
-            p.innerHTML = "jalangiFF running...";
-            window.document.body.appendChild(p);
-            p.addEventListener("click", function() {
-                console.log("click on jalangiFF's p element --> logging results");
-                sandbox.analysis.endExecution();
-            }, false);
-        });
-    }
-    */
     
-    sandbox.DLint = new DLint();
-    sandbox.DLint.DLintWarning = DLintWarning;
+    sandbox.DLint = new PreAnalysis();
+    sandbox.DLint.DLintWarning = Warning;
 
 }(J$));
