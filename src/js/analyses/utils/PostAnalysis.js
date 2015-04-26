@@ -27,9 +27,9 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-// Author: Michael Pradel (michael@binaervarianz.de)
+// Author: Liang Gong (gongliang@cs.berkeley.edu)
+//         Michael Pradel (michael@binaervarianz.de)
 //         Koushik Sen (ksen@cs.berkeley.edu)
-//         Liang Gong (gongliang@cs.berkeley.edu)
 // Ported to Jalangi2 by Liang Gong
 
 (function(sandbox) {
@@ -39,8 +39,44 @@
 
         function showWarningOnWebPage(allWarnings) {
             for (var i = 0; i < allWarnings.length; i++) {
-                sandbox.log(allWarnings[i].details + '<br>');
+                sandbox.log(formatWarning(allWarnings[i]));
             }
+        }
+
+        function formatWarning(warning) {
+            var source = '';
+            // create the a <ul> list
+            for (var prop in warning) {
+                if (!warning.hasOwnProperty(prop)) continue;
+                if (prop === 'iid') continue;
+                if (prop === 'count') continue;
+                if (prop === 'details') continue;
+                if (prop === 'locationString') continue;
+                var content = warning[prop];
+                if (typeof content === 'object') {
+                    content = JSON.stringify(content);
+                } else if (typeof content === 'function') {
+                    content = content.toString();
+                }
+                source += createLi(content, prop, prop + 'Class');
+            }
+            source = createUl(source, 'properties', 'propertiesClass');
+            var detailDiv = createDiv(warning.details, 'details', 'detailsClass');
+            source = createDiv(detailDiv + source, 'warning', 'warningClass');
+            return source;
+        }
+
+        // class is a reserved word
+        function createDiv(content, name, klass) {
+            return '<div name="' + name + '" class="' + klass + '">' + content + '</div>';
+        }
+
+        function createLi(content, name, klass) {
+            return '<li name="' + name + '" class="' + klass + '">' + createDiv(name, 'listName', 'listNameClass') + createDiv(content, 'listContent', 'listContentClass') + '</li>';
+        }
+
+        function createUl(content, name, klass) {
+            return '<ul name="' + name + '" class="' + klass + '">' + content + '</ul>';
         }
 
         this.endExecution = function() {
