@@ -45,6 +45,10 @@
         var root = {};
         var idToHiddenClass = [];
         var warning_limit = 5;
+        // maximal number of layout printed for each warning
+        var layout_print_threshold = 5;
+        // maximal number of access report printed for each warning
+        var access_report_threshold = 5;
 
 
         function annotateObjectWithCreationLocation(obj, iid, sobj) {
@@ -315,10 +319,19 @@
 
 
         this.endExecution = function() {
+            /*
+            var warnings = [];
+            var location = iidToLocation(iid);
+            var ret = new DLintWarning("CheckNaN", iid, location, "Observed NaN at " + location + " " + iidToCount[iid] + " time(s).", iidToCount[iid]);
+            ret.debugInfo = iidToInfo[iid];
+            ret.addInfo = JSON.stringify(additionalInfo);
+            sandbox.DLint.addWarnings(warnings);
+            */
+
             sandbox.log('\n\n');
             sandbox.log("---------------------------");
             sandbox.log("Created " + count + " hidden classes.");
-            sandbox.log('f_count: ' + f_count);
+            sandbox.log('Total # of functions: ' + f_count);
             
             sandbox.log();
             var tmp = [];
@@ -338,28 +351,44 @@
             });
             var len = tmp.length;
             var num = 0;
+            var layout_num = 0;
             for (var i = 0; i < len && i < warning_limit; i++) {
                 var x = tmp[i];
                 if (x.count > MIN_CACHE_HITS) {
                     var meta = x.meta;
                     num++;
-                    sandbox.log("property access at " + iidToLocation(x.iid) + " has missed cache " + x.count + " time(s).");
+                    sandbox.log("<b>property access at " + iidToLocation(x.iid) + " has missed cache " + x.count + " time(s).</b>");
+                    var access_report_num = 0;
+                    print_access:
                     for (var loc in meta.objectLocs) {
                         if (HOP(meta.objectLocs, loc)) {
+                            if(access_report_num >= access_report_threshold) {
+                                sandbox.log('...');
+                                break;
+                            }
                             sandbox.log("  accessed property \"" + meta.lastKey.substring(meta.lastKey.indexOf(":") + 1) + "\" of object created at " + iidToLocation(loc) + " " + meta.objectLocs[loc] + " time(s) ");
+                            access_report_num++;
                         }
                     }
                     var mergeDB = {};
+                    layout_num = 0;
+                    
+                    layout_print:
                     for (var hiddenKey in meta.keysToCount) {
                         if (HOP(meta.keysToCount, hiddenKey)) {
+                            if(layout_num >= layout_print_threshold) {
+                                mergeDB[layout] += '<div>...</div>';
+                                break layout_print;
+                            }
                             var hiddenIdx = parseInt(hiddenKey.substring(0, hiddenKey.indexOf(":")));
                             var hidden = idToHiddenClass[hiddenIdx];
                             var layout = getLayout(hidden);
                             var fieldName = hiddenKey.substring(hiddenKey.indexOf(":") + 1, hiddenKey.length);
                             if (!mergeDB[layout]) {
-                                mergeDB[layout] = "  layout [" + getLayout(hidden) + "]:";
+                                mergeDB[layout] = "<div> &nbsp; layout [" + getLayout(hidden) + "]:</div>";
                             }
-                            mergeDB[layout] += '\n' + '\tput field: ' + fieldName + ' observed ' + meta.keysToCount[hiddenKey] + " time(s)";
+                            mergeDB[layout] += '\n' + '\t<div> &nbsp; &nbsp; put field: ' + fieldName + ' observed ' + meta.keysToCount[hiddenKey] + " time(s)</div>";
+                            layout_num++;
                         }
                     }
                     for (var layout in mergeDB) {
@@ -369,8 +398,6 @@
                     }
                 }
             }
-            sandbox.log('[****]HiddenClass: ' + num);
-
         };
 
     }

@@ -67,7 +67,7 @@
         this.printResult = function () {
             try {
                 sandbox.log("---------------------------");
-                sandbox.log('Report of making non-contiguous array:')
+                sandbox.log('<b>Report of making non-contiguous array:</b>')
                 var incontArrDBArr = [];
                 var incontArrDB = db.getByIndexArr(['JIT-checker', 'non-cont-array']);
                 var num = 0;
@@ -83,7 +83,7 @@
                     return b.count - a.count;
                 });
                 for (var i = 0; i < incontArrDBArr.length && i < warning_limit; i++) {
-                    sandbox.log(' * [location: ' + iidToLocation(incontArrDBArr[i].iid) + '] <- No. usages: ' + incontArrDBArr[i].count);
+                    sandbox.log(' * [location: ' + iidToLocation(incontArrDBArr[i].iid) + ']: <br/> &nbsp; Number of usages: ' + incontArrDBArr[i].count);
                 }
                 sandbox.log('...');
                 sandbox.log('Number of putting non-contiguous array statements: ' + num);

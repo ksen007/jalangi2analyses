@@ -73,7 +73,7 @@
             for (var i = 0; i < array.length; i++) {
                 var iid = array[i].iid;
                 warning_num++;
-                sandbox.log('* Polymorphic binary operation at ' + iidToLocation(iid));
+                sandbox.log('<b>Polymorphic binary operation at ' + iidToLocation(iid) + '</b>');
                 sandbox.log('\tHit: ' + array[i].hit + '\tMiss: ' + array[i].miss);
                 var len = array[i].types.length;
                 for (var index =0; index < len; index++) {
@@ -106,7 +106,7 @@
             for (var i = 0; i < array.length; i++) {
                 var iid = array[i].iid;
                 warning_num++;
-                sandbox.log('* Polymorphic unary operation at ' + iidToLocation(iid));
+                sandbox.log('<b>Polymorphic unary operation at ' + iidToLocation(iid) + '</b>');
                 sandbox.log('\tHit: ' + array[i].hit + '\tMiss: ' + array[i].miss);
                 var len = array[i].types.length;
                 for (var index =0; index < len; index++) {
@@ -122,7 +122,7 @@
         this.printResult = function () {
             try {
                 sandbox.log("---------------------------");
-                sandbox.log('Report of Polymorphic Binary Operations:');
+                sandbox.log('<b>Report of Polymorphic Binary Operations:</b>');
                 printPolyBinary(['JIT-checker', 'polymorphic-binary']);
                 sandbox.log('Report of Polymorphic Unary Operations:');
                 printPolyUnary(['JIT-checker', 'polymorphic-unary']);

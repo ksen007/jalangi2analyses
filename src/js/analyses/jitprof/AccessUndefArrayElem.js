@@ -77,7 +77,7 @@
             try {
                 sandbox.log("---------------------------");
 
-                sandbox.log('Report of loading undeclared or deleted array elements:')
+                sandbox.log('<b>Report of loading undeclared or deleted array elements:</b>')
                 var uninitArrDB = db.getByIndexArr(['JIT-checker', 'uninit-array-elem']);
                 var num = 0;
                 var jitUninitArr = [];
@@ -94,7 +94,7 @@
                 });
 
                 for (var i = 0; i < jitUninitArr.length && i < warning_limit; i++) {
-                    sandbox.log(' * [location: ' + iidToLocation(jitUninitArr[i].iid) + '] <- No. usages: ' + jitUninitArr[i].count);
+                    sandbox.log(' * [location: ' + iidToLocation(jitUninitArr[i].iid) + ']: <br/> &nbsp; Number of usages: ' + jitUninitArr[i].count);
                 }
                 sandbox.log('...');
                 sandbox.log('Number of loading undeclared or deleted array elements spotted: ' + num);

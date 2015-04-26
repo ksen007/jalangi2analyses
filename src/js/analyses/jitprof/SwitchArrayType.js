@@ -120,10 +120,10 @@
                     return b.count - a.count;
                 });
                 for (var i = 0; i < switchArrTypeArr.length && i < warning_limit; i++) {
-                    sandbox.log(' * [location: ' + iidToLocation(switchArrTypeArr[i].iid) + '] <- No. usages: ' + switchArrTypeArr[i].count);
+                    sandbox.log(' * [location: ' + iidToLocation(switchArrTypeArr[i].iid) + ']: <br/> &nbsp; Number of usages: ' + switchArrTypeArr[i].count);
                 }
                 sandbox.log('...');
-                sandbox.log('Number of switching array type spotted: ' + num);
+                sandbox.log('<b>Number of switching array type spotted: ' + num + '</b>');
                 sandbox.log('[****]SwitchArrayType: ' + num);
 
 
