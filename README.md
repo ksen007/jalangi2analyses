@@ -29,7 +29,7 @@ Install
 
 Make sure that your computer meets these [requirements](https://github.com/JacksonGL/dynamicAnalyses/wiki/Requirements-for-Running).  
 
-To install, copy and Paste the following command in your console:
+To install, type the following commands in your console:
 ```
 mkdir dymAnalysis
 cd dymAnalysis
