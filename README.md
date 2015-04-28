@@ -69,4 +69,12 @@ This command sets a web proxy, open a web page with your browser (e.g., Chrome o
 Click the ```Jalangi``` button on your web page to view the analysis result.  
 To close the web proxy, simply rerun the above command ([See Step-by-Step Guide](https://github.com/JacksonGL/dynamicAnalyses/wiki/Run-Analyses-in-Browser)).
 
-**Note:** To run JITProf and DLint on a single JavaScript File, see this [Wiki page](https://github.com/JacksonGL/dynamicAnalyses/wiki/Commands).
+**Note:** To run JITProf and DLint on a single JavaScript file, see this [Wiki page](https://github.com/JacksonGL/dynamicAnalyses/wiki/Commands).
+
+Configuration
+----------------
+To configure which analysis module to be used, see this [Wiki page](https://github.com/JacksonGL/dynamicAnalyses/wiki/Configuration).
+
+License
+-------
+DLint and JITProf is distributed under the [Apache License](http://www.apache.org/licenses/LICENSE-2.0.html).
