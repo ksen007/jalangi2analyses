@@ -41,7 +41,7 @@ git clone https://github.com/JacksonGL/dynamicAnalyses.git
 cd jalangi2
 rm -rf tmp
 mkdir tmp
-cd dynamicAnalyses
+cd ../dynamicAnalyses
 ```
 
 Usage
