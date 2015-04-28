@@ -46,41 +46,27 @@ cd ..
 
 Usage
 --------------
+All the following commands should be executed under directory ```dynamicAnalyses/```.
 
 ### Run DLint in Browser
-Under ```jalangi2/tmp``` directory:
 ```
-../../dynamicAnalyses/scripts/dlint.sh
+node src/js/command/run.js dlint
 ```
 This command sets a web proxy, open a web page with your browser (e.g., Chrome or Safari).
 Click the ```Jalangi``` button on your web page to view the analysis result.  
 To close the web proxy, simply rerun the above command ([See Step-by-Step Guide](https://github.com/JacksonGL/dynamicAnalyses/wiki/Run-Analyses-in-Browser)).
 
-### Run DLint on a Single File
-Suppose you want to run DLint on file: ```tests/dlint/buggy_NoEffectOperation.js```.  
-Under ```dynamicAnalyses``` directory:
-```
-./scripts/dlint_unit.sh tests/dlint/buggy_NoEffectOperation
-```
-
 ### Run Unit Tests for DLint
-Under ```dynamicAnalyses``` directory:
 ```
 node tests/dlint/runAllTests.js 
 ```
 
 ### Run JITProf in Browser
-Under ```jalangi2/tmp``` directory:
 ```
-../../dynamicAnalyses/scripts/jitprof.sh
+node src/js/command/run.js jitprof
 ```
 This command sets a web proxy, open a web page with your browser (e.g., Chrome or Safari).
 Click the ```Jalangi``` button on your web page to view the analysis result.  
 To close the web proxy, simply rerun the above command ([See Step-by-Step Guide](https://github.com/JacksonGL/dynamicAnalyses/wiki/Run-Analyses-in-Browser)).
 
-### Run JITProf on a Single File
-Suppose you want to run JITProf on file: ```tests/jitprof/JITAwareTest.js```.  
-Under ```dynamicAnalyses``` directory:
-```
-./scripts/jitprof_unit.sh tests/jitprof/JITAwareTest
-```
+**Note:** To run JITProf and DLint on a single JavaScript File, see this [Wiki page](https://github.com/JacksonGL/dynamicAnalyses/wiki/Commands).
