@@ -100,6 +100,7 @@
         };
 
         function summarizeWarnings() {
+            if(!(sandbox.DLint) || !(sandbox.DLint.allWarnings)) return [];
             var warnings = sandbox.DLint.allWarnings;
             warnings.sort(function(a, b) {
                 return b.count - a.count;
