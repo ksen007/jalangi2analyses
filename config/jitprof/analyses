@@ -1,0 +1,12 @@
+--analysis ../jalangi2/src/js/sample_analyses/ChainedAnalysesNoCheck.js 
+--analysis src/js/analyses/utils/PreAnalysis.js 
+--analysis src/js/analyses/jitprof/utils/Utils.js 
+--analysis src/js/analyses/jitprof/utils/RuntimeDB.js 
+--analysis src/js/analyses/jitprof/TrackHiddenClass.js  
+--analysis src/js/analyses/jitprof/AccessUndefArrayElem.js 
+--analysis src/js/analyses/jitprof/SwitchArrayType.js
+--analysis src/js/analyses/jitprof/BinaryOpOnUndef.js
+--analysis src/js/analyses/jitprof/NonContiguousArray.js
+--analysis src/js/analyses/jitprof/PolymorphicFunCall.js
+--analysis src/js/analyses/jitprof/TypedArray.js
+--analysis src/js/analyses/utils/PostAnalysis.js
