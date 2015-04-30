@@ -60,7 +60,7 @@
             try {
                 sandbox.log("---------------------------");
 
-                sandbox.log('Report of binary operation on undefined value:');
+                sandbox.log('<b>Report of binary operation on undefined value:</b>');
                 var binaryUndefinedArr = [];
                 var binaryUndefinedDB = db.getByIndexArr(['JIT-checker', 'binary-undefined-op']);
                 var num = 0;
@@ -76,7 +76,7 @@
                     return b.count - a.count;
                 });
                 for (var i = 0; i < binaryUndefinedArr.length && i < warning_limit; i++) {
-                    sandbox.log(' * [location: ' + iidToLocation(binaryUndefinedArr[i].iid) + '] <- No. usages: ' + binaryUndefinedArr[i].count);
+                    sandbox.log(' * [location: ' + iidToLocation(binaryUndefinedArr[i].iid) + ']: <br/> &nbsp; Number of usages: ' + binaryUndefinedArr[i].count);
                 }
                 sandbox.log('Number of statements that perform binary operation on undefined values: ' + num);
                 sandbox.log('[****]BinaryOpUndef: ' + num);

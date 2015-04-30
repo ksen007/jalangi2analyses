@@ -408,7 +408,7 @@
 
             // print final results
             sandbox.log('-------------Fix Array Refactor Report-------------');
-            sandbox.log('Array created at the following locations may be special-typed:');
+            sandbox.log('<b>Array created at the following locations may be special-typed:</b>');
             var num = 0;
             for (var i = 0; i < iidArray.length; i++) {
                 var iid = iidArray[i].iid; num++;

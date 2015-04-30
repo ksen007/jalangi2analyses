@@ -1,0 +1,6 @@
+*.txt
+*.json
+tests/dlint/*_jalangi_.js
+tests/dlint/*_jalangi_.json
+tests/jitprof/*_jalangi_.js
+tests/jitprof/*_jalangi_.json

@@ -20,25 +20,25 @@
 // monomorphic use of operations is preferred over polymorphic operations
 console.log('------------------ test case 1 ------------------');
 var obj1 = {
-    field_a : "value_a",
-    field_b : "value_b"
+    field_a: "value_a",
+    field_b: "value_b"
 };
 var obj2 = {
-    field_a : "value_b",
-    field_c : "value_b"
+    field_a: "value_b",
+    field_c: "value_b"
 };
 var obj3 = {
-    field_c : "value_b",
-    field_d : "value_b"
+    field_c: "value_b",
+    field_d: "value_b"
 };
 var obj4 = {
-    field_a : "value_b1",
-    field_b : "value_b2",
-    field_c : "value_c"
+    field_a: "value_b1",
+    field_b: "value_b2",
+    field_c: "value_c"
 };
 var obj5 = {
-    field_b : "value_b",
-    field_a : "value_a"
+    field_b: "value_b",
+    field_a: "value_a"
 };
 obj5.test = 'test field';
 
@@ -86,21 +86,20 @@ getField2(cat3);
 // test case 2 checking the following optimization rule
 // use contiguous keys statrting at 0 for Arrays
 console.log('------------------ test case 2 ------------------');
-var array = [];
-console.log('accessing array contiguously');
-array[0] = 1;
-array[1] = 2;
-array[2] = 3;
-array[1] = 123;
 
-console.log('accessing array incontiguously');
-array[10] = 14;
-console.log('accessing array incontiguously (2)');
-array[118] = 1123;
-
-function loadElement(arr, index) {
-    return arr[index]
+for (var i = 0; i < 5000; i++) {
+    var array = [];
+    // console.log('accessing array contiguously');
+    array[0] = 1;
+    array[1] = 2;
+    array[2] = 3;
+    array[1] = 123;
+    //console.log('accessing array incontiguously');
+    array[10] = 14;
+    //console.log('accessing array incontiguously (2)');
+    array[118] = 1123;
 }
+
 
 // test case 3 checking the following optimization rule
 // Do not load uninitialized or deleted elements
@@ -126,6 +125,11 @@ console.log('load uninitialized array elements (in function)');
 loadElement(array2, 201);
 loadElement(array2, 202);
 
+function loadElement(arr, index) {
+    return arr[index]
+}
+
+
 // test case 4 checking the following optimization rule
 // Do not store non-numeric values (objects) in numeric arrays
 console.log('------------------ test case 4 ------------------');
@@ -149,6 +153,7 @@ array3[6] = true;
 console.log('------------------ test case 5 ------------------');
 
 var objanother = {};
+
 function Constructor1() {
     this.field1 = 1;
     this.field2 = 13;
@@ -168,8 +173,9 @@ var con_obj3 = Constructor1();
 
 // test case 6 checking the polymorphic constructor
 console.log('------------------ test case 6 ------------------');
-function Node(flag){
-    if(flag){
+
+function Node(flag) {
+    if (flag) {
         this.left = 1;
         this.right = 2;
     } else {
@@ -185,36 +191,45 @@ var node2 = new Node(false);
 
 // test case 7 checking binary operation on undefined values
 console.log('------------------ test case 7 ------------------');
-var undefvalue;
+
 console.log('binary operation on undefined value');
-undefvalue |= 0;
+var undefvalue;
+for (var i = 0; i < 5000; i++) {
+    undefvalue = undefined
+    undefvalue |= 0;
+}
 
 
 // test case 8 checking polymorphic binary and unary operation
 console.log('------------------ test case 8 ------------------');
+
 function f1(v1, v2) {
     return v1 + v2;
 }
-f1(1,2);
-f1(true,2);
-f1(1,f1);
-f1(1,f1);
-f1('1','2');
-f1('2',1)
+for (var i = 0; i < 2000; i++) {
+    f1(1, 2);
+    f1(true, 2);
+    f1(1, f1);
+    f1(1, f1);
+    f1('1', '2');
+    f1('2', 1)
+}
 
 function f2(v1) {
     return !v1;
 }
-f2(1);
-f2('1');
-f2(2);
-f2(1);
-f2('1');
-f2({});
-f2(f1);
-
+for (var i = 0; i < 2000; i++) {
+    f2(1);
+    f2('1');
+    f2(2);
+    f2(1);
+    f2('1');
+    f2({});
+    f2(f1);
+}
 // test case 9 checking arguments leaking
 console.log('------------------ test case 9 ------------------');
+
 function argsLeaking() {
     return arguments;
 }
@@ -232,6 +247,7 @@ argsLeaking2();
 argsLeaking2();
 
 globalObj1 = 1;
+
 function argsLeaking3() {
     globalObj1 = arguments;
 }
@@ -240,3 +256,16 @@ console.log('args leaking case #3');
 argsLeaking3();
 
 // print result
+
+// test case 10 checking typed array
+console.log('------------------ test case 9 ------------------');
+var arr1 = new Array(5000);
+for (var i = 0; i < arr1.length; i++) {
+    arr1[i] = i;
+}
+
+var arr2 = new Array(5000);
+for (var i = 0; i < arr2.length; i++) {
+    arr2[i] = i;
+}
+arr2[i] = 'test';
