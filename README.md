@@ -1,7 +1,7 @@
 # Dynamic Analyses 
 
 
-[Wiki](https://github.com/JacksonGL/dynamicAnalyses/wiki/Wiki-Home) | [Configuring](https://github.com/JacksonGL/dynamicAnalyses/wiki/Configuration) | [Checkers](https://github.com/Berkeley-Correctness-Group/DLint/wiki/DLint-Checkers) | [Develop](https://github.com/JacksonGL/dynamicAnalyses/wiki/Developer-Guide) | [Mailing List](https://groups.google.com/forum/#!forum/dlint)
+[Wiki](https://github.com/JacksonGL/jalangi2analyses/wiki/Wiki-Home) | [Configuring](https://github.com/JacksonGL/jalangi2analyses/wiki/Configuration) | [Checkers](https://github.com/Berkeley-Correctness-Group/DLint/wiki/DLint-Checkers) | [Develop](https://github.com/JacksonGL/jalangi2analyses/wiki/Developer-Guide) | [Mailing List](https://groups.google.com/forum/#!forum/dlint)
 
 This repository contains dynamic analyses for JavaScript code based on [Jalangi2](https://github.com/Samsung/jalangi2). It mainly consists of analyses ported from [JITProf](https://github.com/Berkeley-Correctness-Group/JITProf) and [DLint](https://github.com/Berkeley-Correctness-Group/DLint).
 
@@ -27,7 +27,7 @@ For more details, see this [GitHub repository](https://github.com/Berkeley-Corre
 Install
 --------------
 
-Make sure that your computer meets these [requirements](https://github.com/JacksonGL/dynamicAnalyses/wiki/Requirements-for-Running).  
+Make sure that your computer meets these [requirements](https://github.com/JacksonGL/jalangi2analyses/wiki/Requirements-for-Running).  
 
 To install, type the following commands in your console:
 ```
@@ -37,16 +37,16 @@ git clone https://github.com/Samsung/jalangi2.git
 cd jalangi2
 npm install
 cd ..
-git clone https://github.com/JacksonGL/dynamicAnalyses.git
+git clone https://github.com/JacksonGL/jalangi2analyses.git
 cd jalangi2
 rm -rf tmp
 mkdir tmp
-cd ../dynamicAnalyses
+cd ../jalangi2analyses
 ```
 
 Usage
 --------------
-All the following commands should be executed under directory ```dynamicAnalyses/```.
+All the following commands should be executed under directory ```jalangi2analyses/```.
 
 ### Run DLint in Browser
 ```
@@ -54,7 +54,7 @@ node src/js/command/run.js dlint
 ```
 This command sets a web proxy, open a web page with your browser (e.g., Chrome or Safari).
 Click the ```Jalangi``` button on your web page to view the analysis result.  
-To close the web proxy, simply rerun the above command ([See Step-by-Step Guide](https://github.com/JacksonGL/dynamicAnalyses/wiki/Run-Analyses-in-Browser)).
+To close the web proxy, simply rerun the above command ([See Step-by-Step Guide](https://github.com/JacksonGL/jalangi2analyses/wiki/Run-Analyses-in-Browser)).
 
 ### Run Unit Tests for DLint
 ```
@@ -67,13 +67,13 @@ node src/js/command/run.js jitprof
 ```
 This command sets a web proxy, open a web page with your browser (e.g., Chrome or Safari).
 Click the ```Jalangi``` button on your web page to view the analysis result.  
-To close the web proxy, simply rerun the above command ([See Step-by-Step Guide](https://github.com/JacksonGL/dynamicAnalyses/wiki/Run-Analyses-in-Browser)).
+To close the web proxy, simply rerun the above command ([See Step-by-Step Guide](https://github.com/JacksonGL/jalangi2analyses/wiki/Run-Analyses-in-Browser)).
 
-**Note:** To run JITProf and DLint on a single JavaScript file, see this [Wiki page](https://github.com/JacksonGL/dynamicAnalyses/wiki/Commands).
+**Note:** To run JITProf and DLint on a single JavaScript file, see this [Wiki page](https://github.com/JacksonGL/jalangi2analyses/wiki/Commands).
 
 Configuration
 ----------------
-To configure which analysis module to be used, see this [Wiki page](https://github.com/JacksonGL/dynamicAnalyses/wiki/Configuration).
+To configure which analysis module to be used, see this [Wiki page](https://github.com/JacksonGL/jalangi2analyses/wiki/Configuration).
 
 License
 -------
