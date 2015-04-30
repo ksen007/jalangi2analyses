@@ -69,6 +69,29 @@
     	document.releaseCapture = function () {};
     }
     // --- end loading pseudo DOM ---
-    // the second argument should be a string
-    var newdiv = document.createElementNS("http://www.w3.org/1999/xhtml", true);
+    // there should be only two arguments
+    var jsdom = require('jsdom');
+    var docStr = "\
+    <!DOCTYPE html>\
+    <html>\
+    <head>\
+      <title>getElementById example</title>\
+      <script>\
+      function changeColor(newColor) {\
+        var elem = document.getElementById(\"para1\");\
+        elem.style.color = newColor;\
+      }\
+      </script>\
+    </head>\
+    <body>\
+      <p id=\"para1\">Some text here</p>\
+      <button onclick=\"changeColor('blue');\">blue</button>\
+      <button onclick=\"changeColor('red');\">red</button>\
+    </body>\
+    </html>\
+    ";
+    //Create the document
+    var dom = jsdom.jsdom(docStr);
+    var elem = dom.getElementById('para1');
+    var newNode = document.importNode(elem, true, false);
 })();

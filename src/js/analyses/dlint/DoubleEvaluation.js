@@ -60,15 +60,19 @@
     var iidToLocation = sandbox.iidToLocation;
     var DLintWarning = sandbox.DLint.DLintWarning;
 
-    var forbNameList = ['direct or indirect eval', 'setInterval with code string', 'setTimeout with code string', 'Function', 'document.write'];
+    var forbNameList = ['direct or indirect eval', 'setInterval with code string', 'setTimeout with code string', 'Function', 'document.write', 'document.writeln'];
     var SET_INTERVAL = setInterval;
     var SET_TIMEOUT = setTimeout;
     var FUNCTION = Function;
     var EVAL = eval;
     var DOC_WRITE;
+    var DOC_WRITELN;
     var STRING = String;
     if (typeof document !== 'undefined' && document.write) {
       DOC_WRITE = document.write;
+    }
+    if (typeof document !== 'undefined' && document.writeln) {
+      DOC_WRITELN = document.writeln;
     }
 
     var iidToCount = {}; // iid: number --> count: number
@@ -86,6 +90,8 @@
           iidToCount[iid] = (iidToCount[iid] | 0) + 1;
         }
       } else if (DOC_WRITE && f === DOC_WRITE) {
+        iidToCount[iid] = (iidToCount[iid] | 0) + 1;
+      } else if (DOC_WRITELN && f === DOC_WRITELN) {
         iidToCount[iid] = (iidToCount[iid] | 0) + 1;
       }
     };

@@ -41,20 +41,6 @@
     	document.releaseCapture = function () {};
     }
     // --- end loading pseudo DOM ---
-    // https://developer.mozilla.org/en-US/docs/Web/API/Document/createNodeIterator
-    var nodeIterator = document.createNodeIterator(
-    	document.body,
-    	1, // NodeFilter.SHOW_ELEMENT,
-    	function(node) {
-    		return node.nodeName.toLowerCase() === 'p' ? /*NodeFilter.FILTER_ACCEPT*/ 1 : /*NodeFilter.FILTER_REJECT*/ 2;
-    	}
-    );
-    /*
-    var pars = [];
-    var currentNode;
-    
-    while (currentNode = nodeIterator.nextNode()) {
-    	pars.push(currentNode);
-    }
-    */
+    // https://developer.mozilla.org/en-US/docs/Web/API/Document/writeln
+    // document.writeln("<p>enter password:</p>");
 })();

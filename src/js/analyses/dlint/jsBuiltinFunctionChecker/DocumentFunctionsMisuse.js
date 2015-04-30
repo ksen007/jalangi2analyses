@@ -446,15 +446,115 @@
         );
 
         // document.importNode
-        // document.loadOverlay
-        // document.mozCancelFullScreen
-        
+        // Syntax: var node = document.importNode(externalNode, deep);
+        addEntry('document.importNode', document.importNode,
+            function(iid, f, base, args, result, isConstructor, isMethod) {
+                if (args.length !== 2) {
+                    iidToCount[iid] = (iidToCount[iid] | 0) + 1;
+                    addDebugInfo(iid, 'function document.importNode should take only two arguments. \n Runtime Args: ' + argsToString(args));
+                } else if (args.length >= 1 && !Utils.isNode(args[0])) {
+                    iidToCount[iid] = (iidToCount[iid] | 0) + 1;
+                    addDebugInfo(iid, 'the first argument of document.importNode should be a DOM node. \n Runtime Args: ' + argsToString(args));
+                } else if (args.length >= 2 && (typeof args[1] !== 'boolean')) {
+                    iidToCount[iid] = (iidToCount[iid] | 0) + 1;
+                    addDebugInfo(iid, 'the second argument of document.importNode should be a string. \n Runtime Args: ' + argsToString(args));
+                }
+            }
+        );
+
         // document.queryCommandSupported
+        // isSupported = document.queryCommandSupported(command);
+        addEntry('document.queryCommandSupported', document.queryCommandSupported,
+            function(iid, f, base, args, result, isConstructor, isMethod) {
+                if (args.length !== 1) {
+                    iidToCount[iid] = (iidToCount[iid] | 0) + 1;
+                    addDebugInfo(iid, 'function document.queryCommandSupported should take only one argument. \n Runtime Args: ' + argsToString(args));
+                } else if (args.length >= 1 && !Utils.isString(args[0])) {
+                    iidToCount[iid] = (iidToCount[iid] | 0) + 1;
+                    addDebugInfo(iid, 'the first argument of document.queryCommandSupported should be a string. \n Runtime Args: ' + argsToString(args));
+                }
+            }
+        );
+
         // document.querySelector
+        // Syntax: element = document.querySelector(selectors);
+        addEntry('document.querySelector', document.querySelector,
+            function(iid, f, base, args, result, isConstructor, isMethod) {
+                if (args.length !== 1) {
+                    iidToCount[iid] = (iidToCount[iid] | 0) + 1;
+                    addDebugInfo(iid, 'function document.querySelector should take only one argument. \n Runtime Args: ' + argsToString(args));
+                } else if (args.length >= 1 && !Utils.isString(args[0])) {
+                    iidToCount[iid] = (iidToCount[iid] | 0) + 1;
+                    addDebugInfo(iid, 'the first argument of document.querySelector should be a string. \n Runtime Args: ' + argsToString(args));
+                }
+            }
+        );
+
         // document.querySelectorAll
+        // Syntax: elementList = document.querySelectorAll(selectors);
+        addEntry('document.querySelectorAll', document.querySelectorAll,
+            function(iid, f, base, args, result, isConstructor, isMethod) {
+                if (args.length !== 1) {
+                    iidToCount[iid] = (iidToCount[iid] | 0) + 1;
+                    addDebugInfo(iid, 'function document.querySelectorAll should take only one argument. \n Runtime Args: ' + argsToString(args));
+                } else if (args.length >= 1 && !Utils.isString(args[0])) {
+                    iidToCount[iid] = (iidToCount[iid] | 0) + 1;
+                    addDebugInfo(iid, 'the first argument of document.querySelectorAll should be a string. \n Runtime Args: ' + argsToString(args));
+                }
+            }
+        );
+
         // document.releaseCapture
+        // Syntax: document.releaseCapture()
+        addEntry('document.releaseCapture', document.releaseCapture,
+            function(iid, f, base, args, result, isConstructor, isMethod) {
+                if (args.length !== 0) {
+                    iidToCount[iid] = (iidToCount[iid] | 0) + 1;
+                    addDebugInfo(iid, 'function document.releaseCapture should take only no argument. \n Runtime Args: ' + argsToString(args));
+                }
+            }
+        );
+
         // document.write
+        // Syntax: document.write(markup);
+        addEntry('document.write', document.write,
+            function(iid, f, base, args, result, isConstructor, isMethod) {
+                if (args.length !== 1) {
+                    iidToCount[iid] = (iidToCount[iid] | 0) + 1;
+                    addDebugInfo(iid, 'function document.write should take only one argument. \n Runtime Args: ' + argsToString(args));
+                } else if (args.length >= 1 && !Utils.isString(args[0])) {
+                    iidToCount[iid] = (iidToCount[iid] | 0) + 1;
+                    addDebugInfo(iid, 'the first argument of document.write should be a string. \n Runtime Args: ' + argsToString(args));
+                }
+
+                // When the page finishes loading, the document becomes closed. 
+                // An attempt to document.write in it will cause the contents to be erased.
+                if (document.readyState === "complete") {
+                    iidToCount[iid] = (iidToCount[iid] | 0) + 1;
+                    addDebugInfo(iid, 'The document has finished loading. When the page finishes loading, the document becomes closed. An attempt to document.write in it will cause the contents to be erased.');
+                }
+            }
+        );
         // document.writeln
+        // Syntax: document.writeln(line);
+        addEntry('document.writeln', document.writeln,
+            function(iid, f, base, args, result, isConstructor, isMethod) {
+                if (args.length !== 1) {
+                    iidToCount[iid] = (iidToCount[iid] | 0) + 1;
+                    addDebugInfo(iid, 'function document.writeln should take only one argument. \n Runtime Args: ' + argsToString(args));
+                } else if (args.length >= 1 && !Utils.isString(args[0])) {
+                    iidToCount[iid] = (iidToCount[iid] | 0) + 1;
+                    addDebugInfo(iid, 'the first argument of document.writeln should be a string. \n Runtime Args: ' + argsToString(args));
+                }
+
+                // When the page finishes loading, the document becomes closed. 
+                // An attempt to document.write in it will cause the contents to be erased.
+                if (document.readyState === "complete") {
+                    iidToCount[iid] = (iidToCount[iid] | 0) + 1;
+                    addDebugInfo(iid, 'The document has finished loading. When the page finishes loading, the document becomes closed. An attempt to document.write in it will cause the contents to be erased.');
+                }
+            }
+        );
 
         this.invokeFun = function(iid, f, base, args, result, isConstructor, isMethod) {
             arguments[0] = sandbox.getGlobalIID(iid);

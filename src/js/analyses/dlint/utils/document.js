@@ -43,6 +43,7 @@
   </script>\
 </head>\
 <body>\
+  <iframe src=\"https://www.eecs.berkeley.edu/\"></iframe>\
   <p id=\"para1\">Some text here</p>\
   <button onclick=\"changeColor('blue');\">blue</button>\
   <button onclick=\"changeColor('red');\">red</button>\
@@ -61,6 +62,8 @@
 		document.createRange = function() {};
 		document.hasFocus = function() {};
 		document.getSelection = function () {};
+		document.queryCommandSupported = function (str) {return true;};
+		document.releaseCapture = function () {};
 		sandbox.isPseudoDOM = true;
 		// --- end loading pseudo DOM ---
 	}

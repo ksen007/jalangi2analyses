@@ -18,6 +18,7 @@
       </script>\
     </head>\
     <body>\
+      <iframe src=\"https://www.eecs.berkeley.edu/\"><html><body><div id='innerDiv1'></div></body></html></iframe>\
       <p id=\"para1\">Some text here</p>\
       <button onclick=\"changeColor('blue');\">blue</button>\
       <button onclick=\"changeColor('red');\">red</button>\
@@ -36,6 +37,8 @@
     	document.createRange = function() {};
     	document.hasFocus = function() {};
     	document.getSelection = function () {};
+    	document.queryCommandSupported = function (str) {return true;};
+    	document.releaseCapture = function () {};
     }
     // --- end loading pseudo DOM ---
     // https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementsByName

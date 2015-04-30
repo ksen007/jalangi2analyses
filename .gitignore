@@ -2,5 +2,7 @@
 *.json
 tests/dlint/*_jalangi_.js
 tests/dlint/*_jalangi_.json
+tests/dlint-dev/*
 tests/jitprof/*_jalangi_.js
 tests/jitprof/*_jalangi_.json
+src/js/automation/*

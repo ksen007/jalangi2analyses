@@ -41,20 +41,14 @@
     	document.releaseCapture = function () {};
     }
     // --- end loading pseudo DOM ---
-    // https://developer.mozilla.org/en-US/docs/Web/API/Document/createNodeIterator
-    var nodeIterator = document.createNodeIterator(
-    	document.body,
-    	1, // NodeFilter.SHOW_ELEMENT,
-    	function(node) {
-    		return node.nodeName.toLowerCase() === 'p' ? /*NodeFilter.FILTER_ACCEPT*/ 1 : /*NodeFilter.FILTER_REJECT*/ 2;
-    	}
-    );
-    /*
-    var pars = [];
-    var currentNode;
+    // https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector
+    console.log('#foo\\bar'); // "#fooar"
+    document.querySelector('#foo\tbar'); // Does not match anything
     
-    while (currentNode = nodeIterator.nextNode()) {
-    	pars.push(currentNode);
-    }
-    */
+    console.log('#foo\\bar'); // "#foo\bar"
+    console.log('#foo\\\\bar'); // "#foo\\bar"
+    document.querySelector('#foo\\\\bar'); // Match the first div
+    
+    document.querySelector('#foo_bar'); // Does not match anything
+    document.querySelector('#foo__bar'); // Match the second div
 })();

@@ -69,6 +69,6 @@
     	document.releaseCapture = function () {};
     }
     // --- end loading pseudo DOM ---
-    // the second argument should be a string
-    var newdiv = document.createElementNS("http://www.w3.org/1999/xhtml", true);
+    // there should be no argument
+    document.releaseCapture();
 })();
