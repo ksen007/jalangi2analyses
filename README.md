@@ -73,7 +73,7 @@ This command sets a web proxy, open a web page with your browser (e.g., Chrome o
 Click the ```Jalangi``` button on your web page to view the analysis result.  
 To close the web proxy, simply rerun the above command ([See Step-by-Step Guide](https://github.com/ksen007/jalangi2analyses/wiki/Run-Analyses-in-Browser)).
 
-**Note:** To run JITProf and DLint on a single JavaScript file, see this [Wiki page](https://github.com/ksen007/jalangi2analyses/wiki/Commands).
+**Note:** To run JITProf and DLint on node.js, see this [Wiki page](https://github.com/ksen007/jalangi2analyses/wiki/Commands).
 
 Configuration
 ----------------
