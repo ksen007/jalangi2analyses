@@ -67,6 +67,8 @@
     	document.getSelection = function () {};
     	document.queryCommandSupported = function (str) {return true;};
     	document.releaseCapture = function () {};
+    
+    	Node = window.Node;
     }
     // --- end loading pseudo DOM ---
     var element = document.createElement("div");

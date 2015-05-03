@@ -64,6 +64,9 @@
 		document.getSelection = function () {};
 		document.queryCommandSupported = function (str) {return true;};
 		document.releaseCapture = function () {};
+
+		Node = window.Node;
+		
 		sandbox.isPseudoDOM = true;
 		// --- end loading pseudo DOM ---
 	}

@@ -71,29 +71,6 @@
     	Node = window.Node;
     }
     // --- end loading pseudo DOM ---
-    var jsdom = require('jsdom');
-    var docStr = "\
-    <!DOCTYPE html>\
-    <html>\
-    <head>\
-      <title>getElementById example</title>\
-      <script>\
-      function changeColor(newColor) {\
-        var elem = document.getElementById(\"para1\");\
-        elem.style.color = newColor;\
-      }\
-      </script>\
-    </head>\
-    <body>\
-      <p id=\"para1\">Some text here</p>\
-      <button onclick=\"changeColor('blue');\">blue</button>\
-      <button onclick=\"changeColor('red');\">red</button>\
-    </body>\
-    </html>\
-    ";
-    //Create the document
-    var dom = jsdom.jsdom(docStr);
-    var elem = dom.getElementById('para1');
-    // there should be only one argument
-    var node = document.adoptNode(elem, true);
+    // the first argument should be a HTML node rather than a pseudo-Node
+    document.body.appendChild({dispatchEvent: function() {}});
 })();

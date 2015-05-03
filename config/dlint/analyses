@@ -33,6 +33,7 @@
 --analysis src/js/analyses/dlint/UseArrObjConstrWithoutArg.js
 --analysis src/js/analyses/dlint/MissRadixArgInParseNum.js
 --analysis src/js/analyses/dlint/FloatNumberEqualityComparison.js
+--analysis src/js/analyses/dlint/jsBuiltinFunctionChecker/HTMLNodeFunctionsMisuse.js
 --analysis src/js/analyses/dlint/jsBuiltinFunctionChecker/DocumentFunctionsMisuse.js
 --analysis src/js/analyses/dlint/jsBuiltinFunctionChecker/StringFunctionsMisuse.js
 --analysis src/js/analyses/dlint/jsBuiltinFunctionChecker/RegExpFunctionsMisuse.js

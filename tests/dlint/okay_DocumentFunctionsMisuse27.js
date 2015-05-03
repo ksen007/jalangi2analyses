@@ -67,6 +67,8 @@
     	document.getSelection = function () {};
     	document.queryCommandSupported = function (str) {return true;};
     	document.releaseCapture = function () {};
+    
+    	Node = window.Node;
     }
     // --- end loading pseudo DOM ---
     // https://developer.mozilla.org/en-US/docs/Web/API/Document/write
