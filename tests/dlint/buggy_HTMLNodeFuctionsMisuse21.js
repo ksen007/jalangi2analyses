@@ -62,9 +62,6 @@
     	HTMLFormElement.prototype.reportValidity = function () {};
     }
     // --- end loading pseudo DOM ---
-    // https://developer.mozilla.org/en-US/docs/Web/API/Node/appendChild
-    // Create a new paragraph element, and append it to the end of the document body
-    var p = document.createElement("p");
-    // there should be only one argument
-    document.body.appendChild(p, true);
+    // https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/submit
+    document.forms[0].submit(true);
 })();

@@ -82,6 +82,7 @@
         var REGEXP = RegExp;
         var ARRAY = Array;
         var NODE_PROTOTYPE = Node.prototype;
+        var FORM_PROTOTYPE = HTMLFormElement.prototype;
 
         function argsToString(args) {
             var ret = '[';
@@ -289,8 +290,37 @@
         );
 
         // HTMLFormElement.reportValidity
+        // Syntax: HTMLFormElement.reportValidity
+        addEntry('FORM_PROTOTYPE.reportValidity', FORM_PROTOTYPE.reportValidity,
+            function(iid, f, base, args, result, isConstructor, isMethod) {
+                if (args.length !== 0) {
+                    iidToCount[iid] = (iidToCount[iid] | 0) + 1;
+                    addDebugInfo(iid, 'function HTMLFormElement.prototype.reportValidity should take no argument. \n Runtime Args: ' + argsToString(args));
+                }
+            }
+        );
+
         // HTMLFormElement.reset
+        // Syntax: HTMLFormElement.reset()
+        addEntry('FORM_PROTOTYPE.reset', FORM_PROTOTYPE.reset,
+            function(iid, f, base, args, result, isConstructor, isMethod) {
+                if (args.length !== 0) {
+                    iidToCount[iid] = (iidToCount[iid] | 0) + 1;
+                    addDebugInfo(iid, 'function HTMLFormElement.prototype.reset should take no argument. \n Runtime Args: ' + argsToString(args));
+                }
+            }
+        );
+
         // HTMLFormElement.submit
+        // Syntax: HTMLFormElement.submit()
+        addEntry('FORM_PROTOTYPE.submit', FORM_PROTOTYPE.submit,
+            function(iid, f, base, args, result, isConstructor, isMethod) {
+                if (args.length !== 0) {
+                    iidToCount[iid] = (iidToCount[iid] | 0) + 1;
+                    addDebugInfo(iid, 'function HTMLFormElement.prototype.submit should take no argument. \n Runtime Args: ' + argsToString(args));
+                }
+            }
+        );
 
         this.invokeFun = function(iid, f, base, args, result, isConstructor, isMethod) {
             arguments[0] = sandbox.getGlobalIID(iid);
