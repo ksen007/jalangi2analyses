@@ -69,8 +69,13 @@
     	document.releaseCapture = function () {};
     
     	Node = window.Node;
+    	Node.prototype.isDefaultNamespace = function (namespace) {};
+    	Node.prototype.lookupNamespaceURI = function (prefix) {};
+    	Node.prototype.lookupPrefix = function (namespaceURI) {};
     }
     // --- end loading pseudo DOM ---
     // the first argument should be a HTML node rather than a pseudo-Node
-    document.body.appendChild({dispatchEvent: function() {}});
+    document.body.appendChild({
+    	dispatchEvent: function() {}
+    });
 })();

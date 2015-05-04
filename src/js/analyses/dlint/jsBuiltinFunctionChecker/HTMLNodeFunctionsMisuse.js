@@ -115,17 +115,182 @@
         );
 
         // Node.cloneNode
+        // Syntax: var dupNode = node.cloneNode(deep);
+        addEntry('NODE_PROTOTYPE.cloneNode', NODE_PROTOTYPE.cloneNode,
+            function(iid, f, base, args, result, isConstructor, isMethod) {
+                if (args.length !== 1) {
+                    iidToCount[iid] = (iidToCount[iid] | 0) + 1;
+                    addDebugInfo(iid, 'function Node.prototype.cloneNode should take only one argument. \n Runtime Args: ' + argsToString(args));
+                } else if (args.length >= 1 && !Utils.isBoolean(args[0])) {
+                    iidToCount[iid] = (iidToCount[iid] | 0) + 1;
+                    addDebugInfo(iid, 'the first argument of Node.prototype.cloneNode should be a boolean value. \n Runtime Args: ' + argsToString(args));
+                }
+            }
+        );
+
         // Node.compareDocumentPosition
+        // Syntax: node.compareDocumentPosition(otherNode) 
+        addEntry('NODE_PROTOTYPE.compareDocumentPosition', NODE_PROTOTYPE.compareDocumentPosition,
+            function(iid, f, base, args, result, isConstructor, isMethod) {
+                if (args.length !== 1) {
+                    iidToCount[iid] = (iidToCount[iid] | 0) + 1;
+                    addDebugInfo(iid, 'function Node.prototype.compareDocumentPosition should take only one argument. \n Runtime Args: ' + argsToString(args));
+                } else if (args.length >= 1 && !Utils.isNode(args[0])) {
+                    iidToCount[iid] = (iidToCount[iid] | 0) + 1;
+                    addDebugInfo(iid, 'the first argument of Node.prototype.compareDocumentPosition should be a HTML Node. \n Runtime Args: ' + argsToString(args));
+                }
+            }
+        );
+
         // Node.contains
+        // Syntax: node.contains(otherNode) 
+        addEntry('NODE_PROTOTYPE.contains', NODE_PROTOTYPE.contains,
+            function(iid, f, base, args, result, isConstructor, isMethod) {
+                if (args.length !== 1) {
+                    iidToCount[iid] = (iidToCount[iid] | 0) + 1;
+                    addDebugInfo(iid, 'function Node.prototype.contains should take only one argument. \n Runtime Args: ' + argsToString(args));
+                } else if (args.length >= 1 && !Utils.isNode(args[0])) {
+                    iidToCount[iid] = (iidToCount[iid] | 0) + 1;
+                    addDebugInfo(iid, 'the first argument of Node.prototype.contains should be a HTML Node. \n Runtime Args: ' + argsToString(args));
+                }
+            }
+        );
+
         // Node.hasChildNodes
+        // Syntax: node.hasChildNodes()
+        addEntry('NODE_PROTOTYPE.hasChildNodes', NODE_PROTOTYPE.hasChildNodes,
+            function(iid, f, base, args, result, isConstructor, isMethod) {
+                if (args.length !== 0) {
+                    iidToCount[iid] = (iidToCount[iid] | 0) + 1;
+                    addDebugInfo(iid, 'function Node.prototype.hasChildNodes should take no argument. \n Runtime Args: ' + argsToString(args));
+                }
+            }
+        );
+
         // Node.insertBefore
+        // var insertedElement = parentElement.insertBefore(newElement, referenceElement);
+        addEntry('NODE_PROTOTYPE.insertBefore', NODE_PROTOTYPE.insertBefore,
+            function(iid, f, base, args, result, isConstructor, isMethod) {
+                if (args.length !== 2) {
+                    iidToCount[iid] = (iidToCount[iid] | 0) + 1;
+                    addDebugInfo(iid, 'function Node.prototype.insertBefore should take only two arguments. \n Runtime Args: ' + argsToString(args));
+                } else if (args.length >= 1 && !Utils.isNode(args[0])) {
+                    iidToCount[iid] = (iidToCount[iid] | 0) + 1;
+                    addDebugInfo(iid, 'the first argument of Node.prototype.insertBefore should be a HTML Node. \n Runtime Args: ' + argsToString(args));
+                } else if (args.length >= 2 && !Utils.isNode(args[1])) {
+                    iidToCount[iid] = (iidToCount[iid] | 0) + 1;
+                    addDebugInfo(iid, 'the second argument of Node.prototype.insertBefore should be a HTML Node. \n Runtime Args: ' + argsToString(args));
+                }
+            }
+        );
+
         // Node.isDefaultNamespace
+        // Syntax: result = node.isDefaultNamespace(namespaceURI)
+        addEntry('NODE_PROTOTYPE.isDefaultNamespace', NODE_PROTOTYPE.isDefaultNamespace,
+            function(iid, f, base, args, result, isConstructor, isMethod) {
+                if (args.length !== 1) {
+                    iidToCount[iid] = (iidToCount[iid] | 0) + 1;
+                    addDebugInfo(iid, 'function Node.prototype.isDefaultNamespace should take only one argument. \n Runtime Args: ' + argsToString(args));
+                } else if (args.length >= 1 && !Utils.isString(args[0])) {
+                    iidToCount[iid] = (iidToCount[iid] | 0) + 1;
+                    addDebugInfo(iid, 'the first argument of Node.prototype.isDefaultNamespace should be a string. \n Runtime Args: ' + argsToString(args));
+                }
+            }
+        );
+
         // Node.isEqualNode
+        // Syntax: var isEqualNode = node.isEqualNode(arg);
+        addEntry('NODE_PROTOTYPE.isEqualNode', NODE_PROTOTYPE.isEqualNode,
+            function(iid, f, base, args, result, isConstructor, isMethod) {
+                if (args.length !== 1) {
+                    iidToCount[iid] = (iidToCount[iid] | 0) + 1;
+                    addDebugInfo(iid, 'function Node.prototype.isEqualNode should take only one argument. \n Runtime Args: ' + argsToString(args));
+                } else if (args.length >= 1 && !Utils.isNode(args[0])) {
+                    iidToCount[iid] = (iidToCount[iid] | 0) + 1;
+                    addDebugInfo(iid, 'the first argument of Node.prototype.isEqualNode should be a HTML Node. \n Runtime Args: ' + argsToString(args));
+                }
+            }
+        );
+
         // Node.lookupNamespaceURI
+        // Syntax: node.lookupNamespaceURI(URL_prefix)
+        if(NODE_PROTOTYPE.lookupNamespaceURI) {
+            addEntry('NODE_PROTOTYPE.lookupNamespaceURI', NODE_PROTOTYPE.lookupNamespaceURI,
+                function(iid, f, base, args, result, isConstructor, isMethod) {
+                    if (args.length !== 1) {
+                        iidToCount[iid] = (iidToCount[iid] | 0) + 1;
+                        addDebugInfo(iid, 'function Node.prototype.lookupNamespaceURI should take only one argument. \n Runtime Args: ' + argsToString(args));
+                    } else if (args.length >= 1 && !Utils.isString(args[0])) {
+                        iidToCount[iid] = (iidToCount[iid] | 0) + 1;
+                        addDebugInfo(iid, 'the first argument of Node.prototype.lookupNamespaceURI should be a string. \n Runtime Args: ' + argsToString(args));
+                    }
+                }
+            );
+        }
+
         // Node.lookupPrefix
+        // Syntax: Node.lookupPrefix(namespaceURI)
+        if(NODE_PROTOTYPE.lookupPrefix) {
+            addEntry('NODE_PROTOTYPE.lookupPrefix', NODE_PROTOTYPE.lookupPrefix,
+                function(iid, f, base, args, result, isConstructor, isMethod) {
+                    if (args.length !== 1) {
+                        iidToCount[iid] = (iidToCount[iid] | 0) + 1;
+                        addDebugInfo(iid, 'function Node.prototype.lookupPrefix should take only one argument. \n Runtime Args: ' + argsToString(args));
+                    } else if (args.length >= 1 && !Utils.isString(args[0])) {
+                        iidToCount[iid] = (iidToCount[iid] | 0) + 1;
+                        addDebugInfo(iid, 'the first argument of Node.prototype.lookupPrefix should be a string. \n Runtime Args: ' + argsToString(args));
+                    }
+                }
+            );
+        }
+
         // Node.normalize
+        // Syntax: element.normalize();
+        addEntry('NODE_PROTOTYPE.normalize', NODE_PROTOTYPE.normalize,
+            function(iid, f, base, args, result, isConstructor, isMethod) {
+                if (args.length !== 0) {
+                    iidToCount[iid] = (iidToCount[iid] | 0) + 1;
+                    addDebugInfo(iid, 'function Node.prototype.normalize should take no argument. \n Runtime Args: ' + argsToString(args));
+                }
+            }
+        );
+
+
         // Node.removeChild
+        // Syntax: var oldChild = element.removeChild(child);
+        //         element.removeChild(child);
+        addEntry('NODE_PROTOTYPE.removeChild', NODE_PROTOTYPE.removeChild,
+            function(iid, f, base, args, result, isConstructor, isMethod) {
+                if (args.length !== 1) {
+                    iidToCount[iid] = (iidToCount[iid] | 0) + 1;
+                    addDebugInfo(iid, 'function Node.prototype.removeChild should take only one argument. \n Runtime Args: ' + argsToString(args));
+                } else if (args.length >= 1 && !Utils.isNode(args[0])) {
+                    iidToCount[iid] = (iidToCount[iid] | 0) + 1;
+                    addDebugInfo(iid, 'the first argument of Node.prototype.removeChild should be a HTML Node. \n Runtime Args: ' + argsToString(args));
+                }
+            }
+        );
+
         // Node.replaceChild
+        // Syntax: replacedNode = parentNode.replaceChild(newChild, oldChild);
+        addEntry('NODE_PROTOTYPE.replaceChild', NODE_PROTOTYPE.replaceChild,
+            function(iid, f, base, args, result, isConstructor, isMethod) {
+                if (args.length !== 2) {
+                    iidToCount[iid] = (iidToCount[iid] | 0) + 1;
+                    addDebugInfo(iid, 'function Node.prototype.replaceChild should take only two arguments. \n Runtime Args: ' + argsToString(args));
+                } else if (args.length >= 1 && !Utils.isNode(args[0])) {
+                    iidToCount[iid] = (iidToCount[iid] | 0) + 1;
+                    addDebugInfo(iid, 'the first argument of Node.prototype.replaceChild should be a HTML Node. \n Runtime Args: ' + argsToString(args));
+                } else if (args.length >= 2 && !Utils.isNode(args[1])) {
+                    iidToCount[iid] = (iidToCount[iid] | 0) + 1;
+                    addDebugInfo(iid, 'the second argument of Node.prototype.replaceChild should be a HTML Node. \n Runtime Args: ' + argsToString(args));
+                }
+            }
+        );
+
+        // HTMLFormElement.reportValidity
+        // HTMLFormElement.reset
+        // HTMLFormElement.submit
 
         this.invokeFun = function(iid, f, base, args, result, isConstructor, isMethod) {
             arguments[0] = sandbox.getGlobalIID(iid);

@@ -69,6 +69,9 @@
     	document.releaseCapture = function () {};
     
     	Node = window.Node;
+    	Node.prototype.isDefaultNamespace = function (namespace) {};
+    	Node.prototype.lookupNamespaceURI = function (prefix) {};
+    	Node.prototype.lookupPrefix = function (namespaceURI) {};
     }
     // --- end loading pseudo DOM ---
     var xpathExpr = document.createExpression('/people/person[2]', function() {});

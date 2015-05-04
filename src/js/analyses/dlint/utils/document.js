@@ -66,6 +66,10 @@
 		document.releaseCapture = function () {};
 
 		Node = window.Node;
+		Node.prototype.isDefaultNamespace = function (namespace) {};
+		Node.prototype.lookupNamespaceURI = function (prefix) {};
+		Node.prototype.lookupPrefix = function (namespaceURI) {};
+		
 		
 		sandbox.isPseudoDOM = true;
 		// --- end loading pseudo DOM ---

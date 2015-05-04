@@ -41,6 +41,9 @@
     	document.releaseCapture = function () {};
     
     	Node = window.Node;
+    	Node.prototype.isDefaultNamespace = function (namespace) {};
+    	Node.prototype.lookupNamespaceURI = function (prefix) {};
+    	Node.prototype.lookupPrefix = function (namespaceURI) {};
     }
     // --- end loading pseudo DOM ---
     // https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement
@@ -51,6 +54,6 @@
     newDiv.appendChild(newContent); //add the text node to the newly created div. 
     
     // add the newly created element and its content into the DOM 
-    var currentDiv = document.getElementById("div1");
+    var currentDiv = document.getElementById("para1");
     document.body.insertBefore(newDiv, currentDiv);
 })();
