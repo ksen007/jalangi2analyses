@@ -1,0 +1,26 @@
+{
+  "name": "jalangi2analyses",
+  "version": "0.0.1",
+  "description": "Analyses built on Jalangi 2",
+  "directories": {
+    "doc": "doc",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ksen007/jalangi2analyses.git"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/ksen007/jalangi2analyses/issues"
+  },
+  "homepage": "https://github.com/ksen007/jalangi2analyses#readme",
+  "dependencies": {
+    "jsdom": "^3.1.2",
+    "xmldom": "^0.1.19"
+  }
+}
