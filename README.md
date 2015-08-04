@@ -48,6 +48,7 @@ cd jalangi2
 rm -rf tmp
 mkdir tmp
 cd ../jalangi2analyses
+npm install
 ```
 
 Usage

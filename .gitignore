@@ -1,5 +1,6 @@
 *.txt
-*.json
+analysisResults.json
+node_modules
 scripts/dev_*.sh
 tests/dlint/*_jalangi_.js
 tests/dlint/*_jalangi_.json
