@@ -79,7 +79,7 @@
 		var analysisType = 'dlint', runningMode = 'browser';
 		if(process.argv[2]) {
 			var argv = process.argv[2];
-			if(argv === 'dlint' || argv === 'jitprof' || argv === 'privacy') {
+			if(argv === 'dlint' || argv === 'jitprof') {
 				analysisType = argv;
 			} else {
 				commandError();

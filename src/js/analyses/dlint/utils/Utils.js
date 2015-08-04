@@ -68,6 +68,12 @@
             }
             return false;
         },
+        isBoolean: function(val) {
+            if (typeof val === 'boolean' || (val instanceof BooleanFct)) {
+                return true;
+            }
+            return false;
+        },
         isStringArray: function(array) {
             if (Array.isArray(array)) {
                 for (var i = 0; i < array.length; i++) {

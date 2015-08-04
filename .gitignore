@@ -1,5 +1,6 @@
 *.txt
 *.json
+scripts/dev_*.sh
 tests/dlint/*_jalangi_.js
 tests/dlint/*_jalangi_.json
 tests/dlint-dev/*
