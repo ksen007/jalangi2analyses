@@ -89,8 +89,8 @@
 		var param = '' + fs.readFileSync(cwd + '/config/' + analysisType + '/analyses');
 		param = replaceAll(param, '\n', ' ');
 		param = replaceAll(param, '--analysis src/js/analyses/dlint/utils/document.js', '');
-		param = replaceAll(param, '--analysis src', '../../jalangi2analyses/src');
-		param = replaceAll(param, '--analysis ../jalangi2/src', '../src');
+		param = replaceAll(param, '--analysis src', '--analysis ../../jalangi2analyses/src');
+		param = replaceAll(param, '--analysis ../jalangi2/src', '--analysis ../src');
 		return param;
 	}
 
