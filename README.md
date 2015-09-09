@@ -17,13 +17,17 @@ By analyzing runtime information, DLint is capable of capturing violations of co
 (See an [online demo](https://www.eecs.berkeley.edu/~gongliang13/jalangi_ff/demo_integrated.htm) of dynamic analysis.)
 -->
 
-For more details, a [Wiki page](https://github.com/Berkeley-Correctness-Group/DLint/wiki) and a [technical report](http://www.eecs.berkeley.edu/Pubs/TechRpts/2015/EECS-2015-5.pdf) is available (to appear in [ISSTA'15](http://issta2015.cs.uoregon.edu/) soon).
+For more details, a [Wiki page](https://github.com/Berkeley-Correctness-Group/DLint/wiki) is available.
+
+**Academic Resources:** [Preprint](http://mp.binaervarianz.de/issta2015.pdf) in [ISSTA'15](http://issta2015.cs.uoregon.edu/) | [Presentation Slides](http://www.slideshare.net/JacksonGL/issta15-d-lintv3finalpublic) | [Technical Report](http://www.eecs.berkeley.edu/Pubs/TechRpts/2015/EECS-2015-5.pdf) | [Bibtex](http://mp.binaervarianz.de/issta2015.html)
 
 What is JITProf?
 ----------------
 JITProf is a tool that tells you which part of your JavaScript code may be slow on JIT-engine. We call those slow code **JIT-unfriendly code**.  
 
-For more details, see this [GitHub repository](https://github.com/Berkeley-Correctness-Group/JITProf) and this [technical report](http://www.eecs.berkeley.edu/Pubs/TechRpts/2014/EECS-2014-144.pdf).
+For more details, see this [GitHub repository](https://github.com/Berkeley-Correctness-Group/JITProf).
+
+**Academic Resources:** [Preprint](http://www.cs.berkeley.edu/~ksen/papers/jitprof.pdf) in [ESEC/FSE'15](http://esec-fse15.dei.polimi.it/) | [Presentation Slides](http://mp.binaervarianz.de/fse2015_slides.pdf) | [Technical Report](http://www.eecs.berkeley.edu/Pubs/TechRpts/2014/EECS-2014-144.pdf) | [Bibtex](http://mp.binaervarianz.de/fse2015.html)
 
 
 Install
