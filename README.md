@@ -41,18 +41,9 @@ To run analyses with Jalangi2 on real-world websites, you need to install:
 
 To install, type the following commands in your console:
 ```
-mkdir dymAnalysis
-cd dymAnalysis
-git clone https://github.com/Samsung/jalangi2.git
-cd jalangi2
-npm install
-cd ..
 git clone https://github.com/ksen007/jalangi2analyses.git
-cd jalangi2
-rm -rf tmp
-mkdir tmp
-cd ../jalangi2analyses
 npm install
+cd jalangi2analyses
 ```
 
 Usage

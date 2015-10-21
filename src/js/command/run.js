@@ -35,7 +35,7 @@
 	var child = require('child_process');
 	var cwd = process.cwd();
 	var commandTemplate = '../scripts/mitmproxywrapper.py -t -q --anticache -s "../scripts/proxy.py $param"';
-	var tmpDir = path.resolve(cwd + '/../jalangi2/tmp');
+	var tmpDir = path.resolve(cwd + '/node_modules/jalangi2/tmp');
 	start();
 
 	function start() {
@@ -55,8 +55,13 @@
 
 	function clearDir(dirPath) {
 		try {
+			// make sure the fold exists
+			if(!fs.existsSync(dirPath)) {
+				fs.mkdirSync(dirPath);	
+			}
 			var files = fs.readdirSync(dirPath);
 		} catch (e) {
+			console.log('Error: tmp folder does not exist.');
 			return;
 		}
 		if (files.length > 0)
@@ -89,8 +94,8 @@
 		var param = '' + fs.readFileSync(cwd + '/config/' + analysisType + '/analyses');
 		param = replaceAll(param, '\n', ' ');
 		param = replaceAll(param, '--analysis src/js/analyses/dlint/utils/document.js', '');
-		param = replaceAll(param, '--analysis src', '--analysis ../../jalangi2analyses/src');
-		param = replaceAll(param, '--analysis ../jalangi2/src', '--analysis ../src');
+		param = replaceAll(param, '--analysis src', '--analysis ../../../src');
+		param = replaceAll(param, '--analysis node_modules/jalangi2/src', '--analysis ../src');
 		return param;
 	}
 
@@ -106,7 +111,7 @@
 	}
 
 	function printConfiguration(command) {
-		console.log('cwd: ' + path.resolve(cwd + '/../jalangi2/tmp'));
+		console.log('cwd: ' + path.resolve(cwd + '/node_modules/jalangi2/tmp'));
 		console.log('command:')
 		console.log(command);
 		console.log();
