@@ -42,8 +42,8 @@ To run analyses with Jalangi2 on real-world websites, you need to install:
 To install, type the following commands in your console:
 ```
 git clone https://github.com/ksen007/jalangi2analyses.git
-npm install
 cd jalangi2analyses
+npm install
 ```
 
 Usage
