@@ -56,11 +56,13 @@
         var Warning = sandbox.WarningSummary.Warning;
 
         var iidToCount = {}; // iid: number --> count: number
-        
+
         var NOT_ARGUMENTS_OBJECT_TAG = "$$dlint_not_arguments_object_tag$$"; // TODO: use SMemory
 
         function isArgumentsObject(o) {
-            var ret = (o && (typeof o === "object") && o.hasOwnProperty("callee") && o.hasOwnProperty("length"));
+            var ret = (o && (typeof o === "object")
+                && Object.prototype.hasOwnProperty.call(o, "callee")
+                && Object.prototype.hasOwnProperty.call(o, "length"));
             return ret && !o[NOT_ARGUMENTS_OBJECT_TAG];
         }
 
@@ -129,5 +131,6 @@
             sandbox.WarningSummary.addWarnings(warnings);
         };
     }
+
     sandbox.analysis = new MyAnalysis();
 })(J$);
