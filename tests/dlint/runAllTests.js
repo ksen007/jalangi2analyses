@@ -109,7 +109,7 @@
         if (!error) {
           //console.log(stdout);
           var hasWarning = false;
-          var count = (stdout.match(new RegExp("DLint warning", "g")) || []).length;
+          var count = (stdout.match(new RegExp("Warning", "g")) || []).length;
 
           // console.log(stdout);
           // "executedLines" is part of the output of ExeStat.js

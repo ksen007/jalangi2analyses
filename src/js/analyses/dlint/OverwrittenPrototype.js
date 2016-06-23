@@ -44,7 +44,7 @@
 (function(sandbox) {
     function MyAnalysis() {
         var iidToLocation = sandbox.iidToLocation;
-        var Warning = sandbox.WarningSummary.DLintWarning;
+        var Warning = sandbox.WarningSummary.Warning;
 
         var iidToCount = {};  // iid: number --> count: number
 
