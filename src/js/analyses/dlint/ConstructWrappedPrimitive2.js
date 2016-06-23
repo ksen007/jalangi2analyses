@@ -138,9 +138,6 @@
                 case "instanceof":
                     result = left instanceof right;
                     break;
-                case "in":
-                    result = left in right;
-                    break;
                 default:
                     throw new Error(op + " at " + iid + " not found");
                     break;
@@ -149,21 +146,23 @@
         }
 
         this.binary = function(iid, op, left, right, result) {
-            iid = sandbox.getGlobalIID(iid);
-            var left_prim = Utils.toPrimitive(left);
-            var right_prim = Utils.toPrimitive(right);
-            var prim_res = binaryOp(op, left_prim, right_prim);
+            if (op !== "in") {
+                iid = sandbox.getGlobalIID(iid);
+                var left_prim = Utils.toPrimitive(left);
+                var right_prim = Utils.toPrimitive(right);
+                var prim_res = binaryOp(op, left_prim, right_prim);
 
-            if (prim_res !== result) {
-                // if both are NaN, do not report warning, since it will be reported by NaN checker
-                if(Utils.ISNAN(prim_res) && Utils.ISNAN(result)) {
-                    return ;
-                } 
-                iidToCount[iid] = (iidToCount[iid] | 0) + 1;
-                var leftConstructorName = Utils.getConstructorName(left);
-                var rightConstructorName = Utils.getConstructorName(right);
-                addDebugInfo(iid, leftConstructorName + '("' + left + '") ' + op +
-                    rightConstructorName + '("' + right + '") in binary operation @' + iidToLocation(iid) + '\r\n' + 'Primversion: ' + left_prim + ' ' + op + ' ' + right_prim + '\r\nPrim result:' + prim_res + '\r\nResult:' + result);
+                if (prim_res !== result) {
+                    // if both are NaN, do not report warning, since it will be reported by NaN checker
+                    if (Utils.ISNAN(prim_res) && Utils.ISNAN(result)) {
+                        return;
+                    }
+                    iidToCount[iid] = (iidToCount[iid] | 0) + 1;
+                    var leftConstructorName = Utils.getConstructorName(left);
+                    var rightConstructorName = Utils.getConstructorName(right);
+                    addDebugInfo(iid, leftConstructorName + '("' + left + '") ' + op +
+                          rightConstructorName + '("' + right + '") in binary operation @' + iidToLocation(iid) + '\r\n' + 'Primversion: ' + left_prim + ' ' + op + ' ' + right_prim + '\r\nPrim result:' + prim_res + '\r\nResult:' + result);
+                }
             }
         };
 
