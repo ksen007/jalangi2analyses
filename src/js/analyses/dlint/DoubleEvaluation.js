@@ -28,6 +28,7 @@
  */
 
 // Author: Liang Gong (gongliang13@cs.berkeley.edu)
+//         Michael Pradel (michael@binaervarianz.de)
 // Ported to Jalangi2 by Liang Gong
 
 /**
@@ -58,7 +59,7 @@
 (function(sandbox) {
   function MyAnalysis() {
     var iidToLocation = sandbox.iidToLocation;
-    var DLintWarning = sandbox.DLint.DLintWarning;
+    var Warning = sandbox.WarningSummary.Warning;
 
     var forbNameList = ['direct or indirect eval', 'setInterval with code string', 'setTimeout with code string', 'Function', 'document.write', 'document.writeln'];
     var SET_INTERVAL = setInterval;
@@ -105,9 +106,9 @@
     this.endExecution = function() {
       var warnings = Object.keys(iidToCount).map(function(iid) {
         var location = iidToLocation(iid);
-        return new DLintWarning("DoubleEvaluation", iid, location, "Call eval in the form of " + forbNameList.join(' or ') + " at " + location + " " + iidToCount[iid] + " time(s).", iidToCount[iid]);
+        return new Warning("DoubleEvaluation", iid, location, "Call eval in the form of " + forbNameList.join(' or ') + " at " + location + " " + iidToCount[iid] + " time(s).", iidToCount[iid]);
       });
-      sandbox.DLint.addWarnings(warnings);
+      sandbox.WarningSummary.addWarnings(warnings);
     };
   }
   sandbox.analysis = new MyAnalysis();

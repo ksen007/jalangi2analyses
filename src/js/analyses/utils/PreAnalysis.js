@@ -50,7 +50,7 @@
         this.count = count;
     }
     
-    sandbox.DLint = new PreAnalysis();
-    sandbox.DLint.DLintWarning = Warning;
+    sandbox.WarningSummary = new PreAnalysis();
+    sandbox.WarningSummary.Warning = Warning;
 
 }(J$));

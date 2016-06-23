@@ -47,7 +47,7 @@
     function MyAnalysis() {
         var smemory = sandbox.smemory;
         var iidToLocation = sandbox.iidToLocation;
-        var DLintWarning = sandbox.DLint.DLintWarning;
+        var Warning = sandbox.WarningSummary.Warning;
 
         function isNative(f) {
             return f.toString().indexOf('[native code]') > -1 || f.toString().indexOf('[object ') === 0;
@@ -91,9 +91,9 @@
             var warnings = Object.keys(iidToCount).map(function(iid) {
                 var location = iidToLocation(iid);
                 var details = "Function at " + location + " called " + iidToCount[iid] + " time(s) with more arguments than expected.";
-                return new DLintWarning("FunctionCalledWithMoreArguments", iid, location, details, iidToCount[iid]);
+                return new Warning("FunctionCalledWithMoreArguments", iid, location, details, iidToCount[iid]);
             });
-            sandbox.DLint.addWarnings(warnings);
+            sandbox.WarningSummary.addWarnings(warnings);
         };
     }
     sandbox.analysis = new MyAnalysis();

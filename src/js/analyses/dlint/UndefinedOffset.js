@@ -29,6 +29,7 @@
 
 // Author: Koushik Sen (ksen@cs.berkeley.edu)
 // Ported to Jalangi2 by Liang Gong
+// Michael Pradel (michael@binaervarianz.de)
 
 /**
  * @dlintShort{Find code that attempts to access the 'undefined' property.}
@@ -45,7 +46,7 @@
 
     function MyAnalysis() {
         var iidToLocation = sandbox.iidToLocation;
-        var DLintWarning = sandbox.DLint.DLintWarning;
+        var Warning = sandbox.WarningSummary.Warning;
 
         var iidToCount = {};
         
@@ -71,9 +72,9 @@
             var warnings = Object.keys(iidToCount).map(function(iid) {
                 var location = iidToLocation(iid);
                 var details = "Accessed property 'undefined' or 'NaN' at " + location + " " + iidToCount[iid] + " time(s).";
-                return new DLintWarning("UndefinedOffset", iid, location, details, iidToCount[iid]);
+                return new Warning("UndefinedOffset", iid, location, details, iidToCount[iid]);
             });
-            sandbox.DLint.addWarnings(warnings);
+            sandbox.WarningSummary.addWarnings(warnings);
         };
     }
     sandbox.analysis = new MyAnalysis();

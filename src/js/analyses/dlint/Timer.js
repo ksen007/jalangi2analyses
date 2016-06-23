@@ -30,6 +30,7 @@
 
 // Author: Liang Gong (gongliang13@cs.berkeley.edu)
 // Ported to Jalangi2 by Liang Gong
+// Michael Pradel (michael@binaervarianz.de)
 
 /*
  * This module is written to collect starting time and ending time of DLint
@@ -37,7 +38,7 @@
 (function(sandbox) {
 	function MyAnalysis() {
 		// var iidToLocation = sandbox.iidToLocation;
-		var DLintWarning = sandbox.DLint.DLintWarning;
+		var Warning = sandbox.WarningSummary.Warning;
 		var resultDB = {};
 
 		this.read = function() {
@@ -48,8 +49,8 @@
 		this.endExecution = function() {
 			resultDB.endTime = new Date().getTime();
 			var warnings = [];
-			warnings.push(new DLintWarning("Timer", 0, 'whole-site', JSON.stringify(resultDB), 1));
-			sandbox.DLint.addWarnings(warnings);
+			warnings.push(new Warning("Timer", 0, 'whole-site', JSON.stringify(resultDB), 1));
+			sandbox.WarningSummary.addWarnings(warnings);
 		};
 	}
 	sandbox.analysis = new MyAnalysis();

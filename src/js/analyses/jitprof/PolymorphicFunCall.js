@@ -16,6 +16,8 @@
 
 // Author: Liang Gong
 // Ported to Jalangi2 by Koushik Sen
+// Michael Pradel (michael@binaervarianz.de)
+
 
 /**
  * Check Rule: Try not to use polymorphic binary/unary operations
@@ -50,6 +52,8 @@
 
         var RuntimeDB = sandbox.RuntimeDB;
         var storeDB = new RuntimeDB();
+        var Warning = sandbox.WarningSummary.Warning;
+        var warnings = [];
 
         var warning_num = 0;
         var MISS_THRESHOLD = 999;
@@ -84,6 +88,8 @@
                         '\ttypes: ' + left_type_name + ' ' + array[i].operator + ' ' + right_type_name);
                     }
                 }
+                var warning = new Warning("PolymorphicFunCall", iid, iidToLocation(iid), "Polymorphic binary operation", array[i].miss);
+                warnings.push(warning);
             }
         }
 
@@ -116,6 +122,8 @@
                         '\ttypes:   ' + array[i].operator + ' ' + left_type_name);
                     }
                 }
+                var warning = new Warning("PolymorphicFunCall", iid, iidToLocation(iid), "Polymorphic unary operation", array[i].miss);
+                warnings.push(warning);
             }
         }
 
@@ -127,7 +135,7 @@
                 sandbox.log('Report of Polymorphic Unary Operations:');
                 printPolyUnary(['JIT-checker', 'polymorphic-unary']);
                 sandbox.log('[****]PolyFun: ' + warning_num);
-
+                sandbox.WarningSummary.addWarnings(warnings);
             } catch (e) {
                 console.log("error!!");
                 console.log(e);

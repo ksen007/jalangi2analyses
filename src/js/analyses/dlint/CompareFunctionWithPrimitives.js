@@ -44,7 +44,7 @@
 (function(sandbox) {
     function MyAnalysis() {
         var iidToLocation = sandbox.iidToLocation;
-        var DLintWarning = sandbox.DLint.DLintWarning;
+        var Warning = sandbox.WarningSummary.Warning;
 
         var iidToCount = {};
         //var varTypeDB = {};
@@ -97,7 +97,7 @@
             var warnings = Object.keys(iidToCount).map(function(iid) {
                 var location = iidToLocation(iid);
                 var details = "Comparing a function with a number or string or boolean at " + location + " " + iidToCount[iid] + " time(s).";
-                return new DLintWarning("CompareFunctionWithPrimitives", iid, location, details, iidToCount[iid]);
+                return new Warning("CompareFunctionWithPrimitives", iid, location, details, iidToCount[iid]);
             });
             /*
             if(isReport) {
@@ -106,7 +106,7 @@
               sandbox.DLint.addWarnings([]);
             }
             */
-            sandbox.DLint.addWarnings(warnings);
+            sandbox.WarningSummary.addWarnings(warnings);
         };
     }
     sandbox.analysis = new MyAnalysis();

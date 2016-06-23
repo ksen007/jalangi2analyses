@@ -46,7 +46,7 @@
 (function(sandbox) {
     function MyAnalysis() {
         var iidToLocation = sandbox.iidToLocation;
-        var DLintWarning = sandbox.DLint.DLintWarning;
+        var Warning = sandbox.WarningSummary.Warning;
 
         var iidToCount = {};  // iid: number --> count: number
 
@@ -68,9 +68,9 @@
         this.endExecution = function() {
             var warnings = Object.keys(iidToCount).map(function(iid) {
                 var location = iidToLocation(iid);
-                return new DLintWarning("AddEnumerablePropertyToObject", iid, location, "Adding an enumerable property to Object.prototype at " + location + " " + iidToCount[iid] + " time(s).", iidToCount[iid]);
+                return new Warning("AddEnumerablePropertyToObject", iid, location, "Adding an enumerable property to Object.prototype at " + location + " " + iidToCount[iid] + " time(s).", iidToCount[iid]);
             });
-            sandbox.DLint.addWarnings(warnings);
+            sandbox.WarningSummary.addWarnings(warnings);
         };
     }
     sandbox.analysis = new MyAnalysis();

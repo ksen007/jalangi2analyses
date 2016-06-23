@@ -45,7 +45,7 @@
 (function(sandbox) {
     function MyAnalysis() {
         var iidToLocation = sandbox.iidToLocation;
-        var DLintWarning = sandbox.DLint.DLintWarning;
+        var Warning = sandbox.WarningSummary.Warning;
         var Utils = sandbox.Utils;
 
         var iidToCount = {}; // iid: number --> count: number
@@ -117,7 +117,7 @@
             var warnings = Object.keys(iidToCount).map(function(iid) {
                 var location = iidToLocation(iid);
                 var details = "Concatenated undefined to a string at " + location + " " + iidToCount[iid] + " time(s).";
-                var ret = new DLintWarning("ConcatUndefinedToString", iid, location, details, iidToCount[iid]);
+                var ret = new Warning("ConcatUndefinedToString", iid, location, details, iidToCount[iid]);
                 ret.debugInfo = iidToInfo[iid] + '\r\n ' + additionalInfo;
                 return ret;
             });
@@ -131,7 +131,7 @@
                 sandbox.DLint.addWarnings([]);
             }
             */
-            sandbox.DLint.addWarnings(warnings);
+            sandbox.WarningSummary.addWarnings(warnings);
         };
     }
     sandbox.analysis = new MyAnalysis();

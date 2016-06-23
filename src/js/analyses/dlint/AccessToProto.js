@@ -41,7 +41,7 @@
 (function(sandbox) {
     function MyAnalysis() {
         var iidToLocation = sandbox.iidToLocation;
-        var DLintWarning = sandbox.DLint.DLintWarning;
+        var Warning = sandbox.WarningSummary.Warning;
 
         var iidToCount = {};  // iid: number --> count: number
         this.getFieldPre = function(iid, base, offset) {
@@ -61,9 +61,9 @@
         this.endExecution = function() {
             var warnings = Object.keys(iidToCount).map(function(iid) {
                 var location = iidToLocation(iid);
-                return new DLintWarning("AccessToProto", iid, location, "Access to '__proto__' property at " + location + " " + iidToCount[iid] + " time(s).", iidToCount[iid]);
+                return new Warning("AccessToProto", iid, location, "Access to '__proto__' property at " + location + " " + iidToCount[iid] + " time(s).", iidToCount[iid]);
             });
-            sandbox.DLint.addWarnings(warnings);
+            sandbox.WarningSummary.addWarnings(warnings);
         };
     }
     sandbox.analysis = new MyAnalysis();

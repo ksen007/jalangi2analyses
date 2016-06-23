@@ -41,7 +41,7 @@
 (function(sandbox) {
     function MyAnalysis() {
         var iidToLocation = sandbox.iidToLocation;
-        var DLintWarning = sandbox.DLint.DLintWarning;
+        var Warning = sandbox.WarningSummary.Warning;
 
         var iidToCountNumber = {};  // iid: number --> count: number
         var iidToCountString = {};  // iid: number --> count: number
@@ -77,13 +77,13 @@
             addWarnings(warnings, iidToCountNumber, "Number");
             addWarnings(warnings, iidToCountString, "String");
             addWarnings(warnings, iidToCountBoolean, "Boolean");
-            sandbox.DLint.addWarnings(warnings);
+            sandbox.WarningSummary.addWarnings(warnings);
         };
 
         function addWarnings(warnings, iidToCount, type) {
             Object.keys(iidToCount).forEach(function(iid) {
                 var location = iidToLocation(iid);
-                var w = new DLintWarning("ConstructWrappedPrimitive", iid, location, "Using the " + type + " wrapper for a primitive at " + location + " " + iidToCount[iid] + " time(s).", iidToCount[iid]);
+                var w = new Warning("ConstructWrappedPrimitive", iid, location, "Using the " + type + " wrapper for a primitive at " + location + " " + iidToCount[iid] + " time(s).", iidToCount[iid]);
                 warnings.push(w);
             });
         }

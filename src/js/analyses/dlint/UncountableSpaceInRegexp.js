@@ -55,7 +55,7 @@
 (function(sandbox) {
     function MyAnalysis() {
         var iidToLocation = sandbox.iidToLocation;
-        var DLintWarning = sandbox.DLint.DLintWarning;
+        var Warning = sandbox.WarningSummary.Warning;
 
         var iidToCount = {}; // iid: number --> count: number
         var REGEXP_CONSTRUCTOR = RegExp;
@@ -88,9 +88,9 @@
         this.endExecution = function() {
             var warnings = Object.keys(iidToCount).map(function(iid) {
                 var location = iidToLocation(iid);
-                return new DLintWarning("UncountableSpaceInRegexp", iid, location, "Constructing regular expression with empty classes at " + location + " " + iidToCount[iid] + " time(s).", iidToCount[iid]);
+                return new Warning("UncountableSpaceInRegexp", iid, location, "Constructing regular expression with empty classes at " + location + " " + iidToCount[iid] + " time(s).", iidToCount[iid]);
             });
-            sandbox.DLint.addWarnings(warnings);
+            sandbox.WarningSummary.addWarnings(warnings);
         };
     }
     sandbox.analysis = new MyAnalysis();

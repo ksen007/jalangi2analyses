@@ -16,6 +16,8 @@
 
 // Author: Liang Gong
 // Ported to Jalangi2 by Koushik Sen
+// Michael Pradel (michael@binaervarianz.de)
+
 
 /**
  * Check Rule: Try not to put non-numeric values into numeric arrays
@@ -39,6 +41,7 @@
         var RuntimeDB = sandbox.RuntimeDB;
         var db = new RuntimeDB();
         var Utils = sandbox.Utils;
+        var Warning = sandbox.WarningSummary.Warning;
 
         var warning_limit = 30;
 
@@ -119,9 +122,14 @@
                 switchArrTypeArr.sort(function compare(a, b) {
                     return b.count - a.count;
                 });
+                var warnings = [];
                 for (var i = 0; i < switchArrTypeArr.length && i < warning_limit; i++) {
-                    sandbox.log(' * [location: ' + iidToLocation(switchArrTypeArr[i].iid) + ']: <br/> &nbsp; Number of usages: ' + switchArrTypeArr[i].count);
+                    var warningEntry = switchArrTypeArr[i];
+                    sandbox.log(' * [location: ' + iidToLocation(warningEntry.iid) + ']: <br/> &nbsp; Number of usages: ' + warningEntry.count);
+                    var warning = new Warning("SwitchArrayType", warningEntry.iid, iidToLocation(warningEntry.iid), "Switching array type", warningEntry.count);
+                    warnings.push(warning);
                 }
+                sandbox.WarningSummary.addWarnings(warnings);
                 sandbox.log('...');
                 sandbox.log('<b>Number of switching array type spotted: ' + num + '</b>');
                 sandbox.log('[****]SwitchArrayType: ' + num);

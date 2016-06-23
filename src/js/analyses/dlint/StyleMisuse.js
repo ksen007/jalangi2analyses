@@ -29,6 +29,7 @@
 
 // Author: Liang Gong (gongliang13@cs.berkeley.edu)
 // Ported to Jalangi2 by Liang Gong
+// Michael Pradel (michael@binaervarianz.de)
 
 /**
  * @dlintShort{Find code that compares a CSS object with a string.}
@@ -47,7 +48,7 @@
 ((function(sandbox) {
     function MyAnalysis() {
         var iidToLocation = sandbox.iidToLocation;
-        var DLintWarning = sandbox.DLint.DLintWarning;
+        var Warning = sandbox.WarningSummary.Warning;
         var cssConstructor;
         var regexp = /([^\d])+/g;
         var RuntimeDB = sandbox.RuntimeDB;
@@ -127,9 +128,9 @@
                     return dbObj.left + ' ' + dbObj.op + ' ' + dbObj.right;
                 }).join('\n\t');
                 var location = iidToLocation(iid);
-                return new DLintWarning("StyleMisuse", iid, location, warningMsg, cont);
+                return new Warning("StyleMisuse", iid, location, warningMsg, cont);
             });
-            sandbox.DLint.addWarnings(warnings);
+            sandbox.WarningSummary.addWarnings(warnings);
         };
     }
     sandbox.analysis = new MyAnalysis();

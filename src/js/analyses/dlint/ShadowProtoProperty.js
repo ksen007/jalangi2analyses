@@ -49,7 +49,7 @@
         var iidToLocation = sandbox.iidToLocation;
         var Constants = sandbox.Constants;
         var HOP = Constants.HOP;
-        var DLintWarning = sandbox.DLint.DLintWarning;
+        var Warning = sandbox.WarningSummary.Warning;
 
         var iidToOffsetToCount = {}; // number --> string --> number
         var iidToInfo = {}; // iid: number --> info: object
@@ -99,14 +99,14 @@
                             var location = iidToLocation(iid);
                             var count = offsets[offset];
                             var details = "Written property " + offset + " at " + location + " " + count + " time(s) and it shadows the property in its prototype.";
-                            var warning = new DLintWarning("ShadowProtoProperty", iid, location, details, count);
+                            var warning = new Warning("ShadowProtoProperty", iid, location, details, count);
                             warning.debugInfo = iidToInfo[iid];
                             warnings.push(warning);
                         }
                     }
                 }
             }
-            sandbox.DLint.addWarnings(warnings);
+            sandbox.WarningSummary.addWarnings(warnings);
         };
     }
     sandbox.analysis = new MyAnalysis();

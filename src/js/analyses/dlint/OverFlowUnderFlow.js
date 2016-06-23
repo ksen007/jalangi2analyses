@@ -29,6 +29,7 @@
 
 // Author: Liang Gong (gongliang13@cs.berkeley.edu)
 // Ported to Jalangi2 by Liang Gong
+// Michael Pradel (michael@binaervarianz.de)
 
 /**
  * @dlintShort{Find numerical overflows and underflows.}
@@ -58,7 +59,7 @@
 (function(sandbox) {
     function MyAnalysis() {
         var iidToLocation = sandbox.iidToLocation;
-        var DLintWarning = sandbox.DLint.DLintWarning;
+        var Warning = sandbox.WarningSummary.Warning;
         var Utils = sandbox.Utils; // import utils
 
         var iidToCount = {};  // iid: number --> count: number
@@ -135,11 +136,11 @@
             iidToInfo = Utils.reorganizeDebugInfo(iidToInfo);
             var warnings = Object.keys(iidToCount).map(function(iid) {
                 var location = iidToLocation(iid);
-                var ret = new DLintWarning("CheckOverflow", iid, location, "Observed Overflow (underflow) at " + location + " " + iidToCount[iid] + " time(s).", iidToCount[iid]);
+                var ret = new Warning("CheckOverflow", iid, location, "Observed Overflow (underflow) at " + location + " " + iidToCount[iid] + " time(s).", iidToCount[iid]);
                 ret.debugInfo = iidToInfo[iid];
                 return ret;
             });
-            sandbox.DLint.addWarnings(warnings);
+            sandbox.WarningSummary.addWarnings(warnings);
         };
     }
     sandbox.analysis = new MyAnalysis();

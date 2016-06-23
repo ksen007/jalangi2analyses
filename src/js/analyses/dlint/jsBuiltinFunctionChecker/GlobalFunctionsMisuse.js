@@ -30,13 +30,15 @@
 
 // Author: Liang Gong (gongliang13@cs.berkeley.edu)
 // Ported to Jalangi2 by Liang Gong
+// Michael Pradel (michael@binaervarianz.de)
+
 
 // check for the correct use of RegExp (built-in) functions in JavaScript
 
 (function(sandbox) {
     function MyAnalysis() {
         var iidToLocation = sandbox.iidToLocation;
-        var DLintWarning = sandbox.DLint.DLintWarning;
+        var Warning = sandbox.WarningSummary.Warning;
         var Utils = sandbox.Utils;
 
         var iidToCount = {}; // iid: number --> count: number
@@ -216,14 +218,14 @@
             iidToInfo = Utils.reorganizeDebugInfo(iidToInfo);
             var warnings = Object.keys(iidToCount).map(function(iid) {
                 var location = iidToLocation(iid);
-                var ret = new DLintWarning("GlobalFunctionsMisuse", iid, location,
+                var ret = new Warning("GlobalFunctionsMisuse", iid, location,
                     "Incorrect use of built-in funcitons at " +
                     location + " " + iidToCount[iid] + " time(s).", iidToCount[iid]);
                 ret.debugInfo = iidToInfo[iid];
                 ret.addInfo = JSON.stringify(additionalInfo);
                 return ret;
             });
-            sandbox.DLint.addWarnings(warnings);
+            sandbox.WarningSummary.addWarnings(warnings);
         };
     }
     sandbox.analysis = new MyAnalysis();

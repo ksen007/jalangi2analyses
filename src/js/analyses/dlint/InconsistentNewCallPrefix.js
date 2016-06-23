@@ -30,6 +30,7 @@
 
 // Author: Liang Gong (gongliang13@cs.berkeley.edu)
 // Ported to Jalangi2 by Liang Gong
+// Michael Pradel (michael@binaervarianz.de)
 
 /**
  * @dlintShort{Find inconsistent usages of constructor functions.}
@@ -55,7 +56,7 @@
 (function(sandbox) {
     function MyAnalysis() {
         var iidToLocation = sandbox.iidToLocation;
-        var DLintWarning = sandbox.DLint.DLintWarning;
+        var Warning = sandbox.WarningSummary.Warning;
 
         var iidToCount = {}; // iid: number --> count: number
         var specialProp = '_newPrefixUsage';
@@ -90,9 +91,9 @@
         this.endExecution = function() {
             var warnings = Object.keys(iidToCount).map(function(iid) {
                 var location = iidToLocation(iid);
-                return new DLintWarning("InconsistentNewCallPrefix", iid, location, "calling constructor with/without new prefix inconsistently at " + location + " " + iidToCount[iid] + " time(s).", iidToCount[iid]);
+                return new Warning("InconsistentNewCallPrefix", iid, location, "calling constructor with/without new prefix inconsistently at " + location + " " + iidToCount[iid] + " time(s).", iidToCount[iid]);
             });
-            sandbox.DLint.addWarnings(warnings);
+            sandbox.WarningSummary.addWarnings(warnings);
         };
     }
     sandbox.analysis = new MyAnalysis();

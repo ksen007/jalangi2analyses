@@ -30,6 +30,7 @@
 
 // Author: Liang Gong (gongliang13@cs.berkeley.edu)
 // Ported to Jalangi2 by Liang Gong
+// Michael Pradel (michael@binaervarianz.de)
 
 /*
  * This module is written to collect runtime statistics of the target program.
@@ -39,7 +40,7 @@
 (function(sandbox) {
 	function MyAnalysis() {
 		var iidToLocation = sandbox.iidToLocation;
-        var DLintWarning = sandbox.DLint.DLintWarning;
+        var Warning = sandbox.WarningSummary.Warning;
 		var filenameIdx = {};
 		var resultDB = [];
 
@@ -143,8 +144,8 @@
 
 		this.endExecution = function() {
 			var warnings = [];
-			warnings.push(new DLintWarning("ExeStat", 0, 'whole-site', JSON.stringify(resultDB), 1));
-			sandbox.DLint.addWarnings(warnings);
+			warnings.push(new Warning("ExeStat", 0, 'whole-site', JSON.stringify(resultDB), 1));
+			sandbox.WarningSummary.addWarnings(warnings);
 		};
 	}
 	sandbox.analysis = new MyAnalysis();

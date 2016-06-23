@@ -16,6 +16,8 @@
 
 // Author: Liang Gong
 // Author: Koushik Sen
+// Michael Pradel (michael@binaervarianz.de)
+
 
 // more accurate simulation of hidden class structure in V8
 
@@ -39,6 +41,8 @@
         var HOP = Constants.HOP;
         var hasGetterSetter = Constants.hasGetterSetter;
         var sort = Array.prototype.sort;
+
+        var Warning = sandbox.WarningSummary.Warning;
 
         var info = {};
 
@@ -352,12 +356,15 @@
             var len = tmp.length;
             var num = 0;
             var layout_num = 0;
+            var warnings = [];
             for (var i = 0; i < len && i < warning_limit; i++) {
                 var x = tmp[i];
                 if (x.count > MIN_CACHE_HITS) {
                     var meta = x.meta;
                     num++;
                     sandbox.log("<b>property access at " + iidToLocation(x.iid) + " has missed cache " + x.count + " time(s).</b>");
+                    var warning = new Warning("TrackHiddenClass", x.iid, iidToLocation(x.iid), "Cache miss for hidden class", x.count);
+                    warnings.push(warning);
                     var access_report_num = 0;
                     print_access:
                     for (var loc in meta.objectLocs) {
@@ -398,6 +405,7 @@
                     }
                 }
             }
+            sandbox.WarningSummary.addWarnings(warnings);
         };
 
     }

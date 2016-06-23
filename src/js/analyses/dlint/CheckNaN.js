@@ -35,7 +35,7 @@
 (function(sandbox) {
     function MyAnalysis() {
         var iidToLocation = sandbox.iidToLocation;
-        var DLintWarning = sandbox.DLint.DLintWarning;
+        var Warning = sandbox.WarningSummary.Warning;
         var Utils = sandbox.Utils;
 
         var iidToCount = {}; // iid: number --> count: number
@@ -90,6 +90,7 @@
         */
 
         this.binary = function(iid, op, left, right, result) {
+
             iid = sandbox.getGlobalIID(iid);
             // reduce false positive by checking if the input is NaN
             if (left !== left || right !== right) {
@@ -167,17 +168,18 @@
         */
 
         this.endExecution = function() {
+
             //reorganize iidToInfo
             iidToInfo = Utils.reorganizeDebugInfo(iidToInfo);
             var warnings = Object.keys(iidToCount).map(function(iid) {
                 var location = iidToLocation(iid);
-                var ret = new DLintWarning("CheckNaN", iid, location, "Observed NaN at " + location + " " + iidToCount[iid] + " time(s).", iidToCount[iid]);
+                var ret = new Warning("CheckNaN", iid, location, "Observed NaN at " + location + " " + iidToCount[iid] + " time(s).", iidToCount[iid]);
                 ret.debugInfo = iidToInfo[iid];
                 ret.addInfo = JSON.stringify(additionalInfo);
                 return ret;
             });
 
-            sandbox.DLint.addWarnings(warnings); // not in browser environment
+            sandbox.WarningSummary.addWarnings(warnings); // not in browser environment
             /*
             if (!(((typeof window) !== 'undefined') && ((typeof document) !== 'undefined'))) {
                 sandbox.DLint.addWarnings(warnings); // not in browser environment

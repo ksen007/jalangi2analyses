@@ -16,6 +16,8 @@
 
 // Author: Liang Gong
 // Ported to Jalangi2 by Koushik Sen
+// Michael Pradel (michael@binaervarianz.de)
+
 
 /**
  * Check Rule: Do not use non-contiguous arrays
@@ -39,6 +41,7 @@
         var RuntimeDB = sandbox.RuntimeDB;
         var db = new RuntimeDB();
         var Utils = sandbox.Utils;
+        var Warning = sandbox.WarningSummary.Warning;
 
         var warning_limit = 30;
         var ACCESS_THRESHOLD = 999;
@@ -82,9 +85,14 @@
                 incontArrDBArr.sort(function compare(a, b) {
                     return b.count - a.count;
                 });
+                var warnings = [];
                 for (var i = 0; i < incontArrDBArr.length && i < warning_limit; i++) {
-                    sandbox.log(' * [location: ' + iidToLocation(incontArrDBArr[i].iid) + ']: <br/> &nbsp; Number of usages: ' + incontArrDBArr[i].count);
+                    var warningEntry = incontArrDBArr[i];
+                    sandbox.log(' * [location: ' + iidToLocation(warningEntry.iid) + ']: <br/> &nbsp; Number of usages: ' + warningEntry.count);
+                    var warning = new Warning("NonContiguousArray", warningEntry.iid, iidToLocation(warningEntry.iid), "Adding an element into a non-contiguous array", warningEntry.count);
+                    warnings.push(warning);
                 }
+                sandbox.WarningSummary.addWarnings(warnings);
                 sandbox.log('...');
                 sandbox.log('Number of putting non-contiguous array statements: ' + num);
                 sandbox.log('[****]NonContArray: ' + num);

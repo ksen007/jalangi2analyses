@@ -47,7 +47,7 @@
 (function(sandbox) {
     function MyAnalysis() {
         var iidToLocation = sandbox.iidToLocation;
-        var DLintWarning = sandbox.DLint.DLintWarning;
+        var Warning = sandbox.WarningSummary.Warning;
         var Constants = sandbox.Constants;
 
         var detailsToWarning = {};  // iid: string --> DLintWarning
@@ -77,7 +77,7 @@
         function addWarning(iid, origName, proposedName) {
             var location = iidToLocation(iid);
             var details = "Property '" + origName + "' is undefined at " + location + ". Do you mean '" + proposedName + "'?";
-            var warning = detailsToWarning[details] || new DLintWarning("SimilarPropertyName", iid, location, details, 0);
+            var warning = detailsToWarning[details] || new Warning("SimilarPropertyName", iid, location, details, 0);
             warning.count += 1;
             detailsToWarning[details] = warning;
         }
@@ -98,7 +98,7 @@
             Object.keys(detailsToWarning).forEach(function(d) {
                 warnings.push(detailsToWarning[d]);
             });
-            sandbox.DLint.addWarnings(warnings);
+            sandbox.WarningSummary.addWarnings(warnings);
         };
     }
     sandbox.analysis = new MyAnalysis();
