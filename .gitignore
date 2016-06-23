@@ -1,4 +1,6 @@
+*~
 *.txt
+*.swp
 analysisResults.json
 node_modules
 scripts/dev_*.sh
@@ -8,3 +10,4 @@ tests/dlint-dev/*
 tests/jitprof/*_jalangi_.js
 tests/jitprof/*_jalangi_.json
 src/js/automation/*
+.idea
