@@ -59,10 +59,14 @@
 
         this.getField = function(iid, base, offset, val) {
             iid = sandbox.getGlobalIID(iid);
-            if (offset === "constructor" && typeof val !== "undefined" &&
-                  typeof val.name === "string" && typeof base[specialProp] === 'string' &&
-                  val.name !== base[specialProp]) {
-                iidToCount[iid] = (iidToCount[iid] | 0) + 1;
+            if (offset === "constructor") {
+                if (val === null || typeof val === "undefined") {
+                    iidToCount[iid] = (iidToCount[iid] | 0) + 1;
+                } else if (typeof val !== "undefined" &&
+                      typeof val.name === "string" && typeof base[specialProp] === 'string' &&
+                      val.name !== base[specialProp]) {
+                    iidToCount[iid] = (iidToCount[iid] | 0) + 1;
+                }
             }
         };
 
@@ -74,5 +78,6 @@
             sandbox.WarningSummary.addWarnings(warnings);
         };
     }
+
     sandbox.analysis = new MyAnalysis();
 })(J$);
