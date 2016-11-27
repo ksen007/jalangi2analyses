@@ -29,7 +29,7 @@ For more details, see this [GitHub repository](https://github.com/Berkeley-Corre
 
 **Academic Resources:** [Preprint](http://www.cs.berkeley.edu/~ksen/papers/jitprof.pdf) in [ESEC/FSE'15](http://esec-fse15.dei.polimi.it/) | [Presentation Slides](http://mp.binaervarianz.de/fse2015_slides.pdf) | [Technical Report](http://www.eecs.berkeley.edu/Pubs/TechRpts/2014/EECS-2014-144.pdf) | [Bibtex](http://mp.binaervarianz.de/fse2015.html)
 
-**Visualizing JIT-unfriendly Code:** A project that focuses on visualizing the JIT-unfriendly code. For more details, see [here](https://github.com/JacksonGL/jitprof-visualization).
+**Visualizing JIT-unfriendly Code:** For more details, see [here](https://github.com/JacksonGL/jitprof-visualization).
 
 Install
 --------------
