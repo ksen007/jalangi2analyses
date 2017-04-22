@@ -84,7 +84,7 @@
 		var analysisType = 'dlint', runningMode = 'browser';
 		if(process.argv[2]) {
 			var argv = process.argv[2];
-			if(argv === 'dlint' || argv === 'jitprof') {
+			if(argv === 'dlint' || argv === 'jitprof' || argv === 'none') {
 				analysisType = argv;
 			} else {
 				commandError();
@@ -133,7 +133,7 @@
 
 	function commandError() {
 		console.log('wrong parameter, command line usage:')
-		console.log('\trun.js [ dlint | jitprof ]');
+		console.log('\trun.js [ dlint | jitprof | none ]');
 		process.exit();
 	}
 })();
